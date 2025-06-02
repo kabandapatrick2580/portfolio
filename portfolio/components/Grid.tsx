@@ -6,6 +6,8 @@ import Frontend from '@/sections/Frontend';
 import Designing from '@/sections/Designing';
 import DevOps from '@/sections/DevOps';
 import { projects } from '@/data/ProjectsData';
+import Typewriter from '@/effects/typewriter';
+
 
 const Grid = () => {
   const [selectedGrid, setSelectedGrid] = useState<string | null>(null);
@@ -26,10 +28,6 @@ const Grid = () => {
     { name: 'DevOps', icon: <FaTools className="text-xl md:text-2xl" /> },
   ];
 
-  // Placeholder projects
-
-
-  // Animation variants
   const sidebarVariants = {
     hidden: { y: -100, opacity: 0 }, // Slide from top on mobile
     visible: { y: 0, opacity: 1, transition: { duration: 0.4 } },
@@ -41,6 +39,7 @@ const Grid = () => {
   };
 
   return (
+    
     <div className="min-h-screen bg-gradient-to-br from-navy-900 to-gray-800 flex flex-col">
       {/* Intro Section (shown only when no grid is selected) */}
       <AnimatePresence>
@@ -52,16 +51,31 @@ const Grid = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl font-bold text-white font-heading">
-              [Your Name]
-            </h1>
-            <p className="mt-2 text-lg text-gray-300 font-body">
-              Full-Stack Developer | Crafting Scalable Solutions
+            
+              <Typewriter text="Hello, I'm Patrick – a creative full-stack developer." speed={80} />
+          
+            
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {!selectedGrid && (
+          <motion.div
+            className="w-full max-w-3xl mx-auto px-4 py-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-white font-heading mb-4">About Me</h2>
+            <p className="text-gray-300 font-body text-lg leading-relaxed">
+              I'm a passionate full-stack developer with a love for building creative, robust, and scalable web applications.
+              My experience spans backend, frontend, design, and DevOps, allowing me to deliver end-to-end solutions.
+              I thrive on learning new technologies and collaborating with others to turn ideas into reality.
             </p>
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* Main Content */}
       <div className="flex-1 flex flex-col md:flex-row w-full">
         <AnimatePresence>
@@ -140,7 +154,8 @@ const Grid = () => {
           )}
         </AnimatePresence>
       </div>
-
+      {/* About Me Section (shown only when no grid is selected) */}
+      
       {/* Projects Section (shown only when no grid is selected) */}
       <AnimatePresence>
         {!selectedGrid && (
@@ -182,6 +197,7 @@ const Grid = () => {
         )}
       </AnimatePresence>
     </div>
+    
   );
 };
 
