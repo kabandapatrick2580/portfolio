@@ -7,6 +7,7 @@ import Designing from '@/sections/Designing';
 import DevOps from '@/sections/DevOps';
 import { projects } from '@/data/ProjectsData';
 import Typewriter from '@/effects/typewriter';
+import Link from 'next/link';
 
 
 const Grid = () => {
@@ -29,7 +30,7 @@ const Grid = () => {
   ];
 
   const sidebarVariants = {
-    hidden: { y: -100, opacity: 0 }, // Slide from top on mobile
+    hidden: { y: -200, opacity: 0 }, // Slide from top on mobile
     visible: { y: 0, opacity: 1, transition: { duration: 0.4 } },
   };
 
@@ -52,7 +53,7 @@ const Grid = () => {
             transition={{ duration: 0.6 }}
           >
             
-              <Typewriter text="Hello, I'm Patrick – a creative full-stack developer." speed={80} />
+              <Typewriter text="👋, I'm Patrick – a creative full-stack developer." speed={80} />
           
             
           </motion.div>
@@ -167,7 +168,7 @@ const Grid = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-bold text-white font-heading mb-6">Featured Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id='projects'>
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -178,9 +179,9 @@ const Grid = () => {
                 <p className="mt-2 text-sm text-gray-400 font-body">
                   Categories: {project.categories.join(', ')}
                 </p>
-                {project.url && (
-                  <a
-                    href={project.url}
+                {project.title && (
+                  <Link
+                    href={`/projects/${project.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 inline-block text-white bg-sky-500 px-4 py-2 rounded-lg"
@@ -188,7 +189,7 @@ const Grid = () => {
                     <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                       View Project
                     </motion.button>
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}

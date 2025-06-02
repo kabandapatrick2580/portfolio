@@ -3,14 +3,14 @@ import Image from "next/image"
 
 export default function Header() {
     return (
-        <header className="bg-gray-800 text-white p-4 sticky top-0 z-50">
+        <header className="bg-gray-800 text-white p-2 sticky top-0 z-50">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center">
                     <Image
-                        src="public/images/Profile.jpg"
+                        src="/images/Profile.jpg"
                         alt="Profile Picture"
-                        width={50}
-                        height={50}
+                        width={40}
+                        height={40}
                         className="rounded-full"
                     />
                 <h1 className="ml-4 text-xl font-bold">Patrick Kabanda</h1>
