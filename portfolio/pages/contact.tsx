@@ -30,9 +30,9 @@ export default function Contact() {
                 setStatus('success');
                 setFormData({ name: '', email: '', message: '' });
             } else {
-                const error = await response.json();
+                const errorData = await response.json();
                 setStatus('error');
-                setErrorMessage(error.message || 'Failed to send message. Please try again later.');
+                setErrorMessage(errorData.message || 'Failed to send message. Please try again later.');
             }
         } catch (error) {
             setStatus('error');

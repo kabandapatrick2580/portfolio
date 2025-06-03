@@ -27,7 +27,7 @@ export default function Header() {
                         GitHub
                     </Link>
                     <Link href="/contact" className="hover:text-gray-300">
-                        Contact Us
+                        Contact
                     </Link>
                 </nav>
             </div>
