@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     await resend.emails.send({
-        from: "Contact Form <onboarding@resend.dev>", // Replace with your verified domain
+        from: "Contact Form <goalifai.me>", // Replace with your verified domain
       to: "your.email@example.com", // Your email address
       subject: `New Contact Form Submission from ${name}`,
       html: `
