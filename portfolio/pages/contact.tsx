@@ -35,7 +35,7 @@ export default function Contact() {
                 setErrorMessage(errorData.message || 'Failed to send message. Please try again later.');
             }
         } catch (err) {
-            
+            console.error('Error sending message:', err);
             setStatus('error');
             setErrorMessage('An unexpected error occurred. Please try again later.');
         }
