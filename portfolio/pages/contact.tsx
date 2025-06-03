@@ -20,7 +20,7 @@ export default function Contact() {
         setErrorMessage('');
 
         try {
-            const response = await fetch('/api/contact', {
+            const response = await fetch('/api/nodemailer', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
