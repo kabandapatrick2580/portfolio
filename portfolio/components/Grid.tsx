@@ -70,7 +70,7 @@ const Grid = () => {
           >
             <h2 className="text-2xl md:text-3xl font-bold text-white font-heading mb-4">About Me</h2>
             <p className="text-gray-300 font-body text-lg leading-relaxed">
-              I\'m a passionate full-stack developer with a love for building creative, robust, and scalable web applications.
+              I&apos;m a passionate full-stack developer with a love for building creative, robust, and scalable web applications.
               My experience spans backend, frontend, design, and DevOps, allowing me to deliver end-to-end solutions.
               I thrive on learning new technologies and collaborating with others to turn ideas into reality.
             </p>

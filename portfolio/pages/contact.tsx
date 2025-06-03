@@ -34,7 +34,8 @@ export default function Contact() {
                 setStatus('error');
                 setErrorMessage(errorData.message || 'Failed to send message. Please try again later.');
             }
-        } catch (error) {
+        } catch (err) {
+            
             setStatus('error');
             setErrorMessage('An unexpected error occurred. Please try again later.');
         }
@@ -47,7 +48,7 @@ export default function Contact() {
     return (
         <>
             <Head>
-                <title>Contact Us | Patrick Kabanda</title>
+                <title>Contact | Patrick Kabanda</title>
                 <meta name="description" content="Get in touch with Me for inquiries, feedback, or collaboration opportunities." />
             </Head>
             <div className="container mx-auto p-4 py-12 min-h-screen flex flex-col items-center">
