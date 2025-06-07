@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTh, FaServer, FaCode, FaPaintBrush, FaTools } from 'react-icons/fa';
+import { RiSeoLine } from "react-icons/ri";
 import Backend from '@/sections/Backend';
 import Frontend from '@/sections/Frontend';
 import Designing from '@/sections/Designing';
@@ -27,6 +28,8 @@ const Grid = () => {
     { name: 'Frontend', icon: <FaCode className="text-xl md:text-2xl" /> },
     { name: 'Designing', icon: <FaPaintBrush className="text-xl md:text-2xl" /> },
     { name: 'DevOps', icon: <FaTools className="text-xl md:text-2xl" /> },
+    { name: 'SEO', icon: <RiSeoLine />
+ },
   ];
 
   const sidebarVariants = {
