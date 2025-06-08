@@ -122,7 +122,6 @@ const SidebarItem = styled(motion.div)`
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem;
-  background-color: #374151; /* bg-gray-700 */
   color: #ffffff;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -207,10 +206,9 @@ const GridContainer = styled(motion.div)`
 
 const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr ;
   gap: 1.5rem;
   width: 100%;
-  max-width: 64rem; /* max-w-4xl */
   padding: 1rem;
 
   @media (min-width: 640px) {
@@ -223,21 +221,22 @@ const GridItem = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background-color: #1f2937; /* bg-gray-800 */
-  color: #ffffff;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  background-color: transparent; /* bg-gray-800 */
+  color: #062c2d;
+  border-radius: 0;
   cursor: pointer;
+  border: 1px solid rgb(26, 100, 102); /* border-gray-700 */
 
   &:hover {
-    background-color: #2563eb; /* hover:bg-navy-600 */
+    background-color: #062c2d; /* hover:bg-navy-600 */
+    color:rgb(242, 242, 205); /* text-yellow-400 */
   }
 
   span {
-    margin-top: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: bold;
+    margin-top: 0.2rem;
+    font-size: 12px;
+    font-weight: 500;
     font-family: 'YourHeadingFont', sans-serif;
   }
 `;
@@ -338,7 +337,6 @@ const contentVariants = {
 // Grid Component
 const Grid = () => {
   const [selectedGrid, setSelectedGrid] = useState<string | null>(null);
-
   const handleClick = (grid: string) => {
     setSelectedGrid(grid);
   };
@@ -368,22 +366,14 @@ const Grid = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Subtitle>FULL STACK DEVELOPER</Subtitle>
+              <Subtitle>FULL STACK WEB DEVELOPER</Subtitle>
               <Title>I'm Patrick Kabanda</Title>
               
               {/*<Typewriter text="I'm Patrick – a creative full-stack developer." speed={80} />*/}
             </IntroSection>
           )}
         </AnimatePresence>
-
-        {/* About Section */}
-      </HeroTexts>
-      <HeroImage>
-
-      </HeroImage>
-    </HeroSection>
-      {/* Main Content */}
-      <MainContent>
+        <MainContent>
         <AnimatePresence>
           {selectedGrid ? (
             <>
@@ -451,6 +441,14 @@ const Grid = () => {
           )}
         </AnimatePresence>
       </MainContent>
+
+      </HeroTexts>
+      <HeroImage>
+
+      </HeroImage>
+    </HeroSection>
+      {/* Main Content */}
+      
 
       {/* Projects Section */}
       <AnimatePresence>
