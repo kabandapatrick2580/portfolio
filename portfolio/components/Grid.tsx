@@ -11,19 +11,20 @@ import DevOps from '@/sections/DevOps';
 import { projects } from '@/data/ProjectsData';
 import Typewriter from '@/effects/typewriter';
 import Link from 'next/link';
+import { RiHome9Fill } from 'react-icons/ri';
 
 // Styled Components
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh
 `;
 
 const HeroSection = styled(motion.div)`
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  height: 100vh;
   `;
 
 const HeroTexts = styled.div`
@@ -32,6 +33,7 @@ const HeroTexts = styled.div`
   color:rgb(13, 68, 68)!important;
   background-color: rgb(187, 208, 208);
   font-family: 'roboto', sans-serif;
+  width: 100%;
   `;
 const HeroImage = styled.div`
   display: flex;
@@ -39,13 +41,14 @@ const HeroImage = styled.div`
   justify-content: center;
   background-color:  #062c2d;
   width: 100%;
+  height: 100vh;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-image: url('/images/patrick_port_left.png'); /* Replace with your image path */
   background-size: cover;
   background-position: center;
   margin-bottom: 2rem;
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+  @media (max-width: 768px) {
+    grid-template-columns: auto 1fr; /* Two columns on larger screens */
     padding: 4rem 2rem;
   }
   @media (min-width: 1024px) {
@@ -90,7 +93,6 @@ const MainContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-
   @media (min-width: 768px) {
     flex-direction: row;
   }
@@ -100,21 +102,24 @@ const Sidebar = styled(motion.div)`
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #1f2937; /* bg-gray-800 */
-  padding: 1rem;
+  padding: 1rem 0;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
   z-index: 10;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+  font-size: 10px; /* text-xs */
+  border-right: 1px solid rgb(26, 100, 102);
   @media (min-width: 768px) {
     position: static;
     width: 20%; /* md:w-1/5 */
     flex-direction: column;
-    max-height: 100vh;
     overflow-y: auto;
   }
+  /*Phone styles*/
+  @media (max-width: 768px) {
+    width:60%;
+    border-right: none;
+    
 `;
 
 const SidebarItem = styled(motion.div)`
@@ -122,22 +127,19 @@ const SidebarItem = styled(motion.div)`
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem;
-  color: #ffffff;
-  border-radius: 0.5rem;
   cursor: pointer;
   flex: 1;
   text-align: center;
-
-  &:hover {
-    background-color: #2563eb; /* hover:bg-navy-600 */
-  }
-
   span {
-    font-size: 0.75rem; /* text-xs */
     font-family: 'YourHeadingFont', sans-serif;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 0.75rem!important
+  }
+  &:hover {
+    background-color: #062c2d; /* hover:bg-navy-500 */
+    color: rgb(242, 242, 205); /* text-yellow-400 */
   }
 
   @media (min-width: 768px) {
@@ -156,16 +158,14 @@ const BackButton = styled(motion.button)`
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem;
-  background-color: #2563eb; /* bg-navy-600 */
-  color: #ffffff;
-  border-radius: 0.5rem;
+  color:rgb(242, 242, 205);
   border: none;
   cursor: pointer;
   flex: 1;
   text-align: center;
 
   &:hover {
-    background-color: #1e40af; /* hover:bg-navy-500 */
+    background-color: #062c2d; /* hover:bg-navy-500 */
   }
 
   span {
@@ -189,8 +189,7 @@ const ContentArea = styled(motion.div)`
   margin-top: 5rem;
   padding: 1.5rem;
   overflow-y: auto;
-  background-color: #1f2937; /* bg-gray-800 */
-
+  font-size: 12px;
   @media (min-width: 768px) {
     margin-top: 0;
     padding: 2rem;
@@ -206,7 +205,7 @@ const GridContainer = styled(motion.div)`
 
 const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   width: 100%;
   padding: 1rem;
@@ -221,7 +220,7 @@ const GridItem = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem 0;
   background-color: transparent; /* bg-gray-800 */
   color: #062c2d;
   border-radius: 0;
@@ -325,8 +324,8 @@ const Title = styled.h1`
 
 // Framer Motion variants
 const sidebarVariants = {
-  hidden: { y: -200, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.4 } },
+  hidden: { x: -20, opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.4 } },
 };
 
 const contentVariants = {
@@ -346,11 +345,11 @@ const Grid = () => {
   };
 
   const grids = [
-    { name: 'Backend', icon: <FaServer className="text-xl md:text-2xl" /> },
-    { name: 'Frontend', icon: <FaCode className="text-xl md:text-2xl" /> },
-    { name: 'Designing', icon: <FaPaintBrush className="text-xl md:text-2xl" /> },
-    { name: 'DevOps', icon: <FaTools className="text-xl md:text-2xl" /> },
-    { name: 'SEO', icon: <RiSeoLine className="text-xl md:text-2xl" /> },
+    { name: 'Backend', icon: <FaServer /> },
+    { name: 'Frontend', icon: <FaCode /> },
+    { name: 'Designing', icon: <FaPaintBrush /> },
+    { name: 'DevOps', icon: <FaTools /> },
+    { name: 'SEO', icon: <RiSeoLine /> },
   ];
 
   return (
@@ -384,6 +383,14 @@ const Grid = () => {
                 animate="visible"
                 exit="hidden"
               >
+                <BackButton
+                  onClick={handleBack}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <RiHome9Fill />
+
+                  <span>Home</span>
+                </BackButton>
                 {grids
                   .filter((grid) => grid.name !== selectedGrid)
                   .map((grid) => (
@@ -396,13 +403,7 @@ const Grid = () => {
                       <span>{grid.name}</span>
                     </SidebarItem>
                   ))}
-                <BackButton
-                  onClick={handleBack}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <FaTh className="text-lg md:text-xl" />
-                  <span>All</span>
-                </BackButton>
+                
               </Sidebar>
 
               {/* Main Content Area */}
