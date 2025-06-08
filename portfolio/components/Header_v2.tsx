@@ -19,7 +19,7 @@ const HeaderContainer = styled.header`
 `;
 
 const LeftSection = styled.div`
-  background-color: #062c2d;
+  background-color:rgb(187, 208, 208);
   height: 100%;
   display: flex;
   align-items: center;
@@ -33,12 +33,13 @@ const LeftSection = styled.div`
 `;
 
 const RightSection = styled.div`
-  background-color:rgb(187, 208, 208);
+  background-color: #062c2d;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-right: 20px;
+
 
   @media (max-width: 768px) {
     justify-content: center;
@@ -71,7 +72,7 @@ const NavList = styled.ul`
 const NavItem = styled.li`
   a {
     text-decoration: none;
-    color: #333;
+    color: white;
     font-size: 14px;
     font-weight: 500;
     transition: color 0.3s ease;
