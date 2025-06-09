@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaTh, FaServer, FaCode, FaPaintBrush, FaTools } from 'react-icons/fa';
+import { FaServer, FaCode, FaPaintBrush, FaTools } from 'react-icons/fa';
 import { RiSeoLine } from 'react-icons/ri';
 import Backend from '@/sections/Backend';
 import Frontend from '@/sections/Frontend';
@@ -11,7 +11,7 @@ import DevOps from '@/sections/DevOps';
 import { projects } from '@/data/ProjectsData';
 import Typewriter from '@/effects/typewriter';
 import Link from 'next/link';
-import { RiHome9Fill } from 'react-icons/ri';
+import { RiHome9Fill, RiMobileDownloadFill} from 'react-icons/ri';
 
 // Styled Components
 const Container = styled.div`
@@ -350,6 +350,7 @@ const Grid = () => {
     { name: 'Designing', icon: <FaPaintBrush /> },
     { name: 'DevOps', icon: <FaTools /> },
     { name: 'SEO', icon: <RiSeoLine /> },
+    { name: 'Mobile', icon: <RiMobileDownloadFill /> },
   ];
 
   return (
@@ -385,7 +386,7 @@ const Grid = () => {
               >
                 <BackButton
                   onClick={handleBack}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.025 }}
                 >
                   <RiHome9Fill />
 
@@ -455,9 +456,9 @@ const Grid = () => {
       <AnimatePresence>
         {!selectedGrid && (
           <ProjectsSection
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
           >
             <h2>Featured Projects</h2>
