@@ -40,6 +40,9 @@ export const projects: Project[] = [
     url: "https://education.accountants.co.rw",
     categories: ["Backend", "Frontend"],
     image: "/images/Profile.jpg",
+    longDescription: "Learnpipe is an enrollment and training management system designed for educational institutions. I developed this platform single-handedly, focusing on enhancing administrative efficiency through a user-friendly interface and streamlined workflows. The system allows institutions to manage student enrollments, track training progress, and facilitate communication between students and administrators.",
+    technologies: ["Flask", "React", "JavaScript", "SCSS", "PostgreSQL"],
+    date: "2023-01-15",
   },
   {
     id: 3,

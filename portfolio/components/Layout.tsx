@@ -8,6 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <main className="flex-grow">
             {children}
             </main>
+            
     </div>
   );
 }
