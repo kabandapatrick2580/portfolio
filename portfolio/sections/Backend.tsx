@@ -9,7 +9,8 @@ import { SiFramework } from "react-icons/si";
 import { GrTools } from "react-icons/gr";
 import Projects from '@/pages/projects';
 import { PiStudentBold } from "react-icons/pi";
-
+import { LiaGlobeSolid } from "react-icons/lia";
+import { MdReadMore } from "react-icons/md";
 
 // Styled Components
 const Section = styled(motion.section)`
@@ -58,20 +59,37 @@ const Subheading = styled.p`
 
 const IconsRow = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: 5px
 `;
 
 const IconBox = styled(motion.div)`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 2px 5px;
+  outline: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+    &:hover {
+    background-color: #cbd5e1; // gray-300
+  }
+  transition: background-color 0.3s ease;
 `;
 
+const IconBoxFill = styled(IconBox)`
+  background-color: #e2e8f0; // gray-200
+  color: #1a2745; // navy-800
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #cbd5e1; // gray-300
+  }
+  transition: background-color 0.3s ease;
+  `;
+
 const IconLabel = styled.span`
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.5rem;
   color: #374151;
 `;
 const ProjectsSection = styled.div`
@@ -80,53 +98,59 @@ const ProjectsSection = styled.div`
   h3 {
     font-size: 1rem;
     font-weight: bold;
-    color: #1a2745; // navy-800
+    color: #1a2745;
   }
   `;
-   
 const Project = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1rem;
   `;
-
 const ProjectBox = styled(motion.div)`
-  background-color: #f8fafc; // gray-100
+  background-color: #f8fafc;
   border-radius: 0.5rem;
-  padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  cursor: pointer;
+  gap: 0.5rem;
+`;
+const ProjectDetails = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 200px;
-  height: 200px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  &:hover {
-    transform: translateY(-5px);
-  }
+  justify-content: center;
+  text-align: left;
 `;
+const Subtitle = styled.p`
+  font-size: 8px;
+  font-weight: 400;
+  color: #333;
+  `;
+
 const ProjectTittle = styled.h4`
-  font-size: 1rem;
+  font-size: 12px;
   font-weight: bold;
   color: #1a2745; // navy-800
-  margin-top: 0.5rem;
 `;
 const ProjectDescription = styled.p`
-  font-size: 0.875rem;
-  color: #4b5563; // gray-600
-  text-align: center;
-  margin-top: 0.5rem;
-  max-width: 180px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 8px;
+  font-weight: 400;
+  color: #4b5563;
   @media (max-width: 768px) {
     max-width: 100%;
     white-space: normal;
   }
 `;
 
+const ProjectIcon = styled.div`
+  height: 100%;
+  background-color: #e2e8f0; // gray-200
+  border-radius: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const iconColor = "#334155"; // navy-600
 
@@ -164,16 +188,29 @@ const Backend = () => {
         <ProjectsSection>
           <h3>Projects</h3>
           <Project>
-            <ProjectBox whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <PiStudentBold />
-              <ProjectTittle>Learnpipe</ProjectTittle>
-              <ProjectDescription>
-                A platform where students apply for training programs, and trainers can manage applications.
-              </ProjectDescription>
+            <ProjectBox>
+              <ProjectIcon>
+                <PiStudentBold />
+              </ProjectIcon>
+              <ProjectDetails>
+                <Subtitle>Full-stack</Subtitle>
+                <ProjectTittle>Learnpipe</ProjectTittle>
+                <ProjectDescription>
+                  A platform where students apply for training programs, and trainers can manage applications.
+                </ProjectDescription>
+                <IconsRow>
+                  <IconBox>
+                    <LiaGlobeSolid />
+                    <IconLabel>Web</IconLabel>
+                  </IconBox>
+                  <IconBoxFill>
+                    <MdReadMore />
+                    <IconLabel>Read More</IconLabel>
+                  </IconBoxFill>
+                </IconsRow>
+              </ProjectDetails>
             </ProjectBox>
           </Project>
-
-        
         </ProjectsSection>
       </Container>
     </Section>

@@ -18,7 +18,9 @@ const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh
+  height: 100vh;
+
+
 `;
 
 const HeroSection = styled(motion.div)`
@@ -34,6 +36,7 @@ const HeroTexts = styled.div`
   background-color: rgb(187, 208, 208);
   font-family: 'roboto', sans-serif;
   width: 100%;
+  overflow: auto;
   `;
 const HeroImage = styled.div`
   display: flex;
@@ -92,9 +95,7 @@ const AboutSection = styled(motion.div)`
 const MainContent = styled.div`
   flex: 1;
   display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    flex-direction: row;
+  flex-direction: row;
   }
 `;
 
@@ -113,7 +114,6 @@ const Sidebar = styled(motion.div)`
     position: static;
     width: 20%; /* md:w-1/5 */
     flex-direction: column;
-    overflow-y: auto;
   }
   /*Phone styles*/
   @media (max-width: 768px) {
@@ -133,7 +133,6 @@ const SidebarItem = styled(motion.div)`
   span {
     font-family: 'YourHeadingFont', sans-serif;
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
     font-size: 0.75rem!important
   }
@@ -188,7 +187,7 @@ const ContentArea = styled(motion.div)`
   flex: 1;
   margin-top: 5rem;
   padding: 1.5rem;
-  overflow-y: auto;
+  overflow: auto;
   font-size: 12px;
   @media (min-width: 768px) {
     margin-top: 0;
@@ -352,7 +351,6 @@ const Grid = () => {
     { name: 'SEO', icon: <RiSeoLine /> },
     { name: 'Mobile', icon: <RiMobileDownloadFill /> },
   ];
-
   return (
     <Container>
       {/* Intro Section */}
@@ -368,7 +366,6 @@ const Grid = () => {
             >
               <Subtitle>FULL STACK WEB DEVELOPER</Subtitle>
               <Title>I'm Patrick Kabanda</Title>
-              
               {/*<Typewriter text="I'm Patrick – a creative full-stack developer." speed={80} />*/}
             </IntroSection>
           )}
