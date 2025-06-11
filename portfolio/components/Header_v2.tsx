@@ -14,12 +14,13 @@ const HeaderWrapper = styled.header`
   left: 0;
   width: 100%;
   height: 60px;
-  background-color: #1a1a1a;
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   z-index: 1000;
+  margin-bottom:2rem
 `;
 
 const Logo = styled.div`
@@ -90,7 +91,7 @@ const Header = () => {
   return (
     <>
       <HeaderWrapper>
-        <Logo>My Portfolio</Logo>
+        <Logo></Logo>
         <HamburgerButton onClick={toggleSidebar}>
           <FaBars />
         </HamburgerButton>
@@ -100,9 +101,9 @@ const Header = () => {
           <FaTimes />
         </CloseButton>
         <NavLinks>
-          <li><a href="#home" onClick={toggleSidebar}>Home</a></li>
+          <li><a href="/" onClick={toggleSidebar}>Home</a></li>
           <li><a href="#about" onClick={toggleSidebar}>About</a></li>
-          <li><a href="#projects" onClick={toggleSidebar}>Projects</a></li>
+          <li><a href="/projects" onClick={toggleSidebar}>Projects</a></li>
           <li><a href="#contact" onClick={toggleSidebar}>Contact</a></li>
         </NavLinks>
       </Sidebar>

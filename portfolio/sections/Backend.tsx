@@ -91,34 +91,6 @@ const Backend = () => {
           <li><SiFramework />Frameworks: Django, Flask</li>
           <li><GrTools />Tool: Docker, Git</li>
         </List>
-
-        <ProjectsSection>
-          <h3>Projects</h3>
-          <Project>
-            <ProjectBox>
-              <ProjectIcon>
-                <PiStudentBold />
-              </ProjectIcon>
-              <ProjectDetails>
-                <Subtitle>Full-stack</Subtitle>
-                <ProjectTittle>Learnpipe</ProjectTittle>
-                <ProjectDescription>
-                  A platform where students apply for training programs, and trainers can manage applications.
-                </ProjectDescription>
-                <IconsRow>
-                  <IconBox>
-                    <LiaGlobeSolid />
-                    <IconLabel>Web</IconLabel>
-                  </IconBox>
-                  <IconBoxFill>
-                    <MdReadMore />
-                    <IconLabel>Read More</IconLabel>
-                  </IconBoxFill>
-                </IconsRow>
-              </ProjectDetails>
-            </ProjectBox>
-          </Project>
-        </ProjectsSection>
       </Container>
     </Section>
   );

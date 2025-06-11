@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { colors, typography, spacing, shadows } from '@/styles/constants';
 
-
+export const Container = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1e1b4b, #2a2e6b, #3b1e4b);
+  color: #e0e7ff;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+`;
 const IconsRow = styled.div`
   display: flex;
   gap: 1rem;
@@ -43,6 +52,7 @@ const ProjectsSection = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
     padding: 1rem;
+    margin-top: 2rem;
     h3 {
         font-size: 1rem;
         font-weight: bold;
@@ -63,7 +73,7 @@ const Project = styled.div`
   margin-top: 1rem;
   `;
 const ProjectBox = styled(motion.div)`
-  background-color: #f8fafc;
+  background-color: ${colors.glassBg}; 
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;

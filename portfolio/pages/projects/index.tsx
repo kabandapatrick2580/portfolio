@@ -3,16 +3,17 @@ import { projects } from "@/data/ProjectsData";
 import Link from "next/link";
 import Head from "next/head";
 import { motion } from "framer-motion";
-import { ProjectBox, ProjectIcon, ProjectDetails, Subtitle, ProjectTittle, ProjectDescription, IconsRow, IconBox, IconBoxFill, IconLabel, ProjectsSection, Project } from '@/styles/Card.styled';
+import { ProjectBox, ProjectIcon, ProjectDetails, Subtitle, ProjectTittle, ProjectDescription, IconsRow, IconBox, IconBoxFill, IconLabel, ProjectsSection, Project, Container } from '@/styles/Card.styled';
 import { PiStudentBold } from "react-icons/pi";
 import { MdReadMore } from "react-icons/md";
 import { LiaGlobeSolid } from "react-icons/lia";
 
+
 export default function Projects() {
   return (
-    <>
+    <Container>
       <Head>
-        <title>Projects | Your Portfolio</title>
+        <title>Projects | Patrick Kabanda</title>
         <meta name="description" content="Explore my portfolio of projects built with modern technologies." />
       </Head>
       <ProjectsSection>
@@ -30,7 +31,6 @@ export default function Projects() {
                   <ProjectTittle>{project.title}</ProjectTittle>
                   <ProjectDescription>{project.description}</ProjectDescription>
                   <IconsRow>
-                    
                       {project.url && (
                         <Link href={project.url} target="_blank" rel="noopener noreferrer">
                           <IconBox>
@@ -54,6 +54,6 @@ export default function Projects() {
             </ProjectBox>
           ))}
       </ProjectsSection>
-    </>
+    </Container>
   );
 }

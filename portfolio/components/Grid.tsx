@@ -2,339 +2,328 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaServer, FaCode, FaPaintBrush, FaTools } from 'react-icons/fa';
-import { RiSeoLine } from 'react-icons/ri';
+import { 
+  FiCode, 
+  FiServer, 
+  FiPenTool, 
+  FiGitBranch, 
+  FiSearch, 
+  FiSmartphone,
+  FiHome,
+} from 'react-icons/fi';
 import Backend from '@/sections/Backend';
 import Frontend from '@/sections/Frontend';
 import Designing from '@/sections/Designing';
 import DevOps from '@/sections/DevOps';
-import { projects } from '@/data/ProjectsData';
-import Typewriter from '@/effects/typewriter';
 import Link from 'next/link';
-import { RiHome9Fill, RiMobileDownloadFill} from 'react-icons/ri';
 
 // Styled Components
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-
-
+  background: linear-gradient(135deg, #1e1b4b, #2a2e6b, #3b1e4b);
+  color: #e0e7ff;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
 `;
 
 const HeroSection = styled(motion.div)`
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  `;
+  min-height: 100vh;
+  overflow: hidden;
 
-const HeroTexts = styled.div`
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
-  color:rgb(13, 68, 68)!important;
-  background-color: rgb(187, 208, 208);
-  font-family: 'roboto', sans-serif;
-  width: 100%;
-  overflow: auto;
-  `;
-const HeroImage = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color:  #062c2d;
+  padding: 3rem;
+  background: linear-gradient(180deg, rgba(30, 27, 75, 0.9), rgba(59, 30, 75, 0.7));
+  backdrop-filter: blur(8px);
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
+`;
+
+const HeroImage = styled(motion.div)`
+  background: url('/images/patrick_port_left.png') no-repeat center/cover;
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: 100vh;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-image: url('/images/patrick_port_left.png'); /* Replace with your image path */
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 2rem;
+  object-fit: cover;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0.3;
+  }
+`;
+
+const Title = styled(motion.h1)`
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #a5b4fc, #f0abfc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+
   @media (max-width: 768px) {
-    grid-template-columns: auto 1fr; /* Two columns on larger screens */
-    padding: 4rem 2rem;
-  }
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
-    padding: 6rem 3rem;
-  }`;
-
-
-const IntroSection = styled(motion.div)`
-  text-align: center;
-  padding-top: 3rem;
-  padding-bottom: 2rem;
-`;
-
-const AboutSection = styled(motion.div)`
-  width: 100%;
-  max-width: 48rem; /* max-w-3xl */
-  margin: 0 auto;
-  padding: 2rem 1rem;
-
-  h2 {
-    font-size: 1.5rem; /* text-2xl */
-    font-weight: bold;
-    color: #ffffff;
-    font-family: 'YourHeadingFont', sans-serif; /* Replace with your heading font */
-    margin-bottom: 1rem;
-
-    @media (min-width: 768px) {
-      font-size: 1.875rem; /* text-3xl */
-    }
-  }
-
-  p {
-    color: #d1d5db; /* text-gray-300 */
-    font-family: 'YourBodyFont', sans-serif; /* Replace with your body font */
-    font-size: 1.125rem;
-    line-height: 1.75;
+    font-size: 2.5rem;
   }
 `;
 
-const MainContent = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  }
+const Subtitle = styled(motion.h2)`
+  font-size: 1.5rem;
+  color: #c4b5fd;
+  font-weight: 400;
+  margin-bottom: 2rem;
 `;
 
-const Sidebar = styled(motion.div)`
+const Sidebar = styled(motion.nav)`
   position: fixed;
   top: 0;
-  width: 100%;
-  padding: 1rem 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: rgba(17, 24, 39, 0.95);
+  padding: 2rem;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  z-index: 10;
-  font-size: 10px; /* text-xs */
-  border-right: 1px solid rgb(26, 100, 102);
-  @media (min-width: 768px) {
-    position: static;
-    width: 20%; /* md:w-1/5 */
-    flex-direction: column;
-  }
-  /*Phone styles*/
+  z-index: 20;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+
   @media (max-width: 768px) {
-    width:60%;
-    border-right: none;
-    
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+  }
 `;
 
 const SidebarItem = styled(motion.div)`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  color: #e0e7ff;
   cursor: pointer;
-  flex: 1;
-  text-align: center;
-  span {
-    font-family: 'YourHeadingFont', sans-serif;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: 0.75rem!important
-  }
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+
   &:hover {
-    background-color: #062c2d; /* hover:bg-navy-500 */
-    color: rgb(242, 242, 205); /* text-yellow-400 */
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
   }
 
-  @media (min-width: 768px) {
-    padding: 0.75rem;
-    flex: initial;
-    text-align: left;
-
-    span {
-      font-size: 0.875rem; /* text-sm */
-    }
+  svg {
+    font-size: 1.5rem;
   }
 `;
 
 const BackButton = styled(motion.button)`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  color:rgb(242, 242, 205);
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: none;
   border: none;
+  color: #e0e7ff;
   cursor: pointer;
-  flex: 1;
-  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
 
   &:hover {
-    background-color: #062c2d; /* hover:bg-navy-500 */
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    color: #ffffff;
   }
 
-  span {
-    font-size: 0.75rem;
-    font-family: 'YourHeadingFont', sans-serif;
-  }
-
-  @media (min-width: 768px) {
-    padding: 0.75rem;
-    flex: initial;
-    text-align: left;
-
-    span {
-      font-size: 0.875rem;
-    }
+  svg {
+    font-size: 1.5rem;
   }
 `;
 
 const ContentArea = styled(motion.div)`
   flex: 1;
-  margin-top: 5rem;
-  padding: 1.5rem;
-  overflow: auto;
-  font-size: 12px;
-  @media (min-width: 768px) {
-    margin-top: 0;
+  padding: 3rem;
+  margin-left: 280px;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
     padding: 2rem;
+    margin-top: 4rem;
   }
 `;
 
 const GridContainer = styled(motion.div)`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  width: 100%;
-  padding: 1rem;
-
-  @media (min-width: 640px) {
-    grid-template-columns: repeat(2, 1fr); /* sm:grid-cols-2 */
-  }
+  padding: 2rem;
 `;
 
 const GridItem = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0;
-  background-color: transparent; /* bg-gray-800 */
-  color: #062c2d;
-  border-radius: 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   cursor: pointer;
-  border: 1px solid rgb(26, 100, 102); /* border-gray-700 */
+  position: relative;
+  overflow: hidden;
 
-  &:hover {
-    background-color: #062c2d; /* hover:bg-navy-600 */
-    color:rgb(242, 242, 205); /* text-yellow-400 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(79, 70, 229, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
   }
 
   span {
-    margin-top: 0.2rem;
-    font-size: 12px;
-    font-weight: 500;
-    font-family: 'YourHeadingFont', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e0e7ff;
+    margin-top: 1rem;
+  }
+
+  svg {
+    font-size: 2.5rem;
+    color: #a5b4fc;
   }
 `;
 
-const ProjectsSection = styled(motion.div)`
-  width: 100%;
-  max-width: 64rem;
-  padding: 3rem 1rem;
+const ProjectsSection = styled(motion.section)`
+  padding: 3rem;
+  max-width: 1200px;
   margin: 0 auto;
+`;
 
-  h2 {
-    font-size: 1.875rem;
-    font-weight: bold;
+const ProjectCard = styled(motion.div)`
+  background: rgba(17, 24, 39, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e0e7ff;
+  }
+
+  p {
+    color: #c4b5fd;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
     color: #ffffff;
-    font-family: 'YourHeadingFont', sans-serif;
-    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
   }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 `;
 
-const ProjectCard = styled.div`
-  background-color: #374151; /* bg-gray-700 */
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+// Framer Motion Variants
+const heroVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+};
 
-  &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  h3 {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #ffffff;
-    font-family: 'YourHeadingFont', sans-serif;
-  }
-
-  p {
-    margin-top: 0.5rem;
-    color: #d1d5db; /* text-gray-300 */
-    font-family: 'YourBodyFont', sans-serif;
-  }
-
-  p.categories {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #9ca3af; /* text-gray-400 */
-  }
-`;
-
-const ProjectLink = styled(Link)`
-  display: inline-block;
-  margin-top: 0.5rem;
-  background-color: #0ea5e9; /* bg-sky-500 */
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-`;
-
-const Subtitle = styled.h2`
-  font-size: 1.25rem; 
-  color: f7d002;
-  margin: 10px 0;
-  `;
-const Title = styled.h1`
-  font-size: 2.5rem;
-  color: #062c2d;
-  margin: 0;
-  `;
-
-
-// Framer Motion variants
 const sidebarVariants = {
-  hidden: { x: -20, opacity: 0 },
-  visible: { x: 0, opacity: 1, transition: { duration: 0.4 } },
+  hidden: { x: -300, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { type: 'spring', stiffness: 100, damping: 15 },
+  },
+};
+
+const gridItemVariants = {
+  hidden: { scale: 0.8, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 200,
+      damping: 10,
+      mass: 0.5,
+    },
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: '0 0 20px rgba(79, 70, 229, 0.5)',
+    transition: { type: 'spring', stiffness: 300 },
+  },
 };
 
 const contentVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.4, delay: 0.2 } },
+  hidden: { opacity: 0, x: 100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+};
+
+const projectCardVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: 'spring', stiffness: 120, damping: 15 },
+  },
+  hover: { scale: 1.03, boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)' },
 };
 
 // Grid Component
 const Grid = () => {
   const [selectedGrid, setSelectedGrid] = useState<string | null>(null);
+
   const handleClick = (grid: string) => {
     setSelectedGrid(grid);
   };
@@ -344,141 +333,118 @@ const Grid = () => {
   };
 
   const grids = [
-    { name: 'Backend', icon: <FaServer /> },
-    { name: 'Frontend', icon: <FaCode /> },
-    { name: 'Designing', icon: <FaPaintBrush /> },
-    { name: 'DevOps', icon: <FaTools /> },
-    { name: 'SEO', icon: <RiSeoLine /> },
-    { name: 'Mobile', icon: <RiMobileDownloadFill /> },
+    { name: 'Backend', icon: <FiServer /> },
+    { name: 'Frontend', icon: <FiCode /> },
+    { name: 'Designing', icon: <FiPenTool /> },
+    { name: 'DevOps', icon: <FiGitBranch /> },
+    { name: 'SEO', icon: <FiSearch /> },
+    { name: 'Mobile', icon: <FiSmartphone /> },
   ];
+
+  const projects = [
+    { title: 'Project 1', description: 'A modern web app', categories: 'Web, Backend', link: '#' },
+    { title: 'Project 2', description: 'Creative UI design', categories: 'Frontend, Design', link: '#' },
+    { title: 'Project 3', description: 'CI/CD pipeline', categories: 'DevOps', link: '#' },
+  ];
+
   return (
     <Container>
-      {/* Intro Section */}
-    <HeroSection>
-      <HeroTexts>
-        <AnimatePresence>
-          {!selectedGrid && (
-            <IntroSection
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Subtitle>FULL STACK WEB DEVELOPER</Subtitle>
-              <Title>I'm Patrick Kabanda</Title>
-              {/*<Typewriter text="I'm Patrick – a creative full-stack developer." speed={80} />*/}
-            </IntroSection>
-          )}
-        </AnimatePresence>
-        <MainContent>
-        <AnimatePresence>
-          {selectedGrid ? (
-            <>
-              {/* Sidebar/Top Bar */}
-              <Sidebar
-                variants={sidebarVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-              >
-                <BackButton
-                  onClick={handleBack}
-                  whileHover={{ scale: 1.025 }}
+      <HeroSection
+        initial="hidden"
+        animate="visible"
+        variants={heroVariants}
+      >
+        <HeroContent>
+          <Title
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 150, damping: 10 }}
+          >
+            Patrick Kabanda
+          </Title>
+          <Subtitle
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            Full Stack Web Developer
+          </Subtitle>
+
+          <AnimatePresence>
+            {selectedGrid ? (
+              <>
+                <Sidebar
+                  variants={sidebarVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
                 >
-                  <RiHome9Fill />
+                  <BackButton
+                    onClick={handleBack}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FiHome />
+                    <span>Home</span>
+                  </BackButton>
+                  {grids
+                    .filter((grid) => grid.name !== selectedGrid)
+                    .map((grid) => (
+                      <SidebarItem
+                        key={grid.name}
+                        onClick={() => handleClick(grid.name)}
+                        whileHover="hover"
+                        variants={gridItemVariants}
+                      >
+                        {grid.icon}
+                        <span>{grid.name}</span>
+                      </SidebarItem>
+                    ))}
+                </Sidebar>
 
-                  <span>Home</span>
-                </BackButton>
-                {grids
-                  .filter((grid) => grid.name !== selectedGrid)
-                  .map((grid) => (
-                    <SidebarItem
-                      key={grid.name}
-                      onClick={() => handleClick(grid.name)}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {grid.icon}
-                      <span>{grid.name}</span>
-                    </SidebarItem>
-                  ))}
-                
-              </Sidebar>
-
-              {/* Main Content Area */}
-              <ContentArea
-                variants={contentVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
+                <ContentArea
+                  variants={contentVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                >
+                  {selectedGrid === 'Backend' && <Backend />}
+                  {selectedGrid === 'Frontend' && <Frontend />}
+                  {selectedGrid === 'Designing' && <Designing />}
+                  {selectedGrid === 'DevOps' && <DevOps />}
+                </ContentArea>
+              </>
+            ) : (
+              <GridContainer
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
-                {selectedGrid === 'Backend' && <Backend />}
-                {selectedGrid === 'Frontend' && <Frontend />}
-                {selectedGrid === 'Designing' && <Designing />}
-                {selectedGrid === 'DevOps' && <DevOps />}
-              </ContentArea>
-            </>
-          ) : (
-            <GridContainer
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <GridWrapper>
                 {grids.map((grid) => (
                   <GridItem
                     key={grid.name}
                     onClick={() => handleClick(grid.name)}
-                    whileHover={{ scale: 1.05 }}
+                    variants={gridItemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
                     whileTap={{ scale: 0.95 }}
                   >
                     {grid.icon}
                     <span>{grid.name}</span>
                   </GridItem>
                 ))}
-              </GridWrapper>
-            </GridContainer>
-          )}
-        </AnimatePresence>
-      </MainContent>
+              </GridContainer>
+            )}
+          </AnimatePresence>
+        </HeroContent>
+        <HeroImage
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+        />
+      </HeroSection>
 
-      </HeroTexts>
-      <HeroImage>
-
-      </HeroImage>
-    </HeroSection>
-      {/* Projects Section */}
-      <AnimatePresence>
-        {!selectedGrid && (
-          <ProjectsSection
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2>Featured Projects</h2>
-            <ProjectsGrid id="projects">
-              {projects.map((project, index) => (
-                <ProjectCard key={index}>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <p className="categories">Categories: {project.categories.join(', ')}</p>
-                  {project.title && (
-                    <ProjectLink
-                      href={`/projects/${project.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                        View Project
-                      </motion.button>
-                    </ProjectLink>
-                  )}
-                </ProjectCard>
-              ))}
-            </ProjectsGrid>
-          </ProjectsSection>
-        )}
-      </AnimatePresence>
     </Container>
   );
 };
