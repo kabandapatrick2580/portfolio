@@ -19,7 +19,6 @@ export default function Projects() {
           {projects.map((project) => (
             <ProjectBox
               key={project.id} // Use project.id instead of index
-            
             >
               <ProjectIcon>
                 <PiStudentBold />

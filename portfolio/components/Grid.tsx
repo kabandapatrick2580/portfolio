@@ -446,9 +446,6 @@ const Grid = () => {
 
       </HeroImage>
     </HeroSection>
-      {/* Main Content */}
-      
-
       {/* Projects Section */}
       <AnimatePresence>
         {!selectedGrid && (

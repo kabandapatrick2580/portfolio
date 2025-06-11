@@ -1,120 +1,113 @@
-// components/Header.js
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
-// Styled components
-const HeaderContainer = styled.header`
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
+interface SidebarProps {
+  isOpen: boolean;
+}
+
+
+// Styled Components
+const HeaderWrapper = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 80px;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr; /* Stack on mobile */
-    height: auto;
-    padding: 10px 0;
-  }
-`;
-
-const LeftSection = styled.div`
-  background-color:rgb(187, 208, 208);
-  height: 100%;
+  height: 60px;
+  background-color: #1a1a1a;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 20px;
-
-  @media (max-width: 768px) {
-    height: 60px;
-    width: 100%;
-  }
+  padding: 0 20px;
+  z-index: 1000;
 `;
 
-const RightSection = styled.div`
-  background-color: #062c2d;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 20px;
-
-
-  @media (max-width: 768px) {
-    justify-content: center;
-    padding: 10px;
-    width: 100%;
-  }
+const Logo = styled.div`
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
 `;
 
-const LogoPlaceholder = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #ccc;
-  border-radius: 8px;
+const HamburgerButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  z-index: 1100;
 `;
 
-const NavList = styled.ul`
+const Sidebar = styled.div<SidebarProps>`
+  position: fixed;
+  top: 0;
+  right: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+  width: 250px;
+  height: 100vh;
+  background-color: #2a2a2a;
+  transition: right 0.5s ease-in-out;
+  z-index: 1000;
+  padding: 20px;
+  color: #fff;
+`;
+
+const CloseButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+`;
+
+const NavLinks = styled.ul`
   list-style: none;
-  display: flex;
-  gap: 20px;
-  margin: 0;
   padding: 0;
+  margin-top: 60px;
 
-  @media (max-width: 768px) {
-    flex-direction: column; /* Stack links vertically */
-    align-items: center;
-    gap: 10px;
-  }
-`;
-
-const NavItem = styled.li`
-  a {
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #062c2d;
-      
-    }
-  }
-
-  @media (max-width: 768px) {
+  li {
+    margin: 20px 0;
     a {
-      font-size: 18px; /* Larger text for mobile */
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      &:hover {
+        color: #00ff88;
+      }
     }
   }
 `;
 
-// Header component
-const Header_v2 = () => {
+// Header Component
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <HeaderContainer>
-      <LeftSection>
-        <LogoPlaceholder />
-      </LeftSection>
-      <RightSection>
-        <NavList>
-          <NavItem>
-            <Link href="/">Home</Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/about">About</Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/services">Services</Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/contact">Contact</Link>
-          </NavItem>
-        </NavList>
-      </RightSection>
-    </HeaderContainer>
+    <>
+      <HeaderWrapper>
+        <Logo>My Portfolio</Logo>
+        <HamburgerButton onClick={toggleSidebar}>
+          <FaBars />
+        </HamburgerButton>
+      </HeaderWrapper>
+      <Sidebar isOpen={isOpen}>
+        <CloseButton onClick={toggleSidebar}>
+          <FaTimes />
+        </CloseButton>
+        <NavLinks>
+          <li><a href="#home" onClick={toggleSidebar}>Home</a></li>
+          <li><a href="#about" onClick={toggleSidebar}>About</a></li>
+          <li><a href="#projects" onClick={toggleSidebar}>Projects</a></li>
+          <li><a href="#contact" onClick={toggleSidebar}>Contact</a></li>
+        </NavLinks>
+      </Sidebar>
+    </>
   );
 };
 
-export default Header_v2;
+export default Header;

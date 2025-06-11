@@ -12,6 +12,7 @@ const IconBox = styled(motion.div)`
   display: flex;
   flex-direction: row;
   text-align: center;
+  align-items: center;
   gap: 0.5rem;
   padding: 2px 5px;
   outline: 1px solid #e2e8f0;
