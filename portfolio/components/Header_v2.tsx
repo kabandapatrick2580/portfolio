@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { colors } from '@/styles/constants';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -29,13 +30,14 @@ const Logo = styled.div`
   font-weight: bold;
 `;
 
-const HamburgerButton = styled.button`
+const HamburgerButton = styled.button<SidebarProps>`
   background: none;
   border: none;
   cursor: pointer;
   color: #fff;
   font-size: 24px;
   z-index: 1100;
+  display: ${({ isOpen }) => (isOpen ? 'none' : 'block')};
 `;
 
 const Sidebar = styled.div<SidebarProps>`
@@ -44,7 +46,7 @@ const Sidebar = styled.div<SidebarProps>`
   right: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
   width: 250px;
   height: 100vh;
-  background-color: #2a2a2a;
+  background-color: ${colors.glassBg};
   transition: right 0.5s ease-in-out;
   z-index: 1000;
   padding: 20px;
@@ -92,7 +94,7 @@ const Header = () => {
     <>
       <HeaderWrapper>
         <Logo></Logo>
-        <HamburgerButton onClick={toggleSidebar}>
+        <HamburgerButton isOpen={isOpen} onClick={toggleSidebar}>
           <FaBars />
         </HamburgerButton>
       </HeaderWrapper>
