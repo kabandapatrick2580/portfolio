@@ -6,7 +6,7 @@ export const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #1e1b4b, #2a2e6b, #3b1e4b);
+  background: ${colors.backgroundGradient};
   color: #e0e7ff;
   font-family: 'Inter', sans-serif;
   width: 100%;

@@ -15,14 +15,15 @@ import Backend from '@/sections/Backend';
 import Frontend from '@/sections/Frontend';
 import Designing from '@/sections/Designing';
 import DevOps from '@/sections/DevOps';
-import Link from 'next/link';
+import { colors, typography, spacing, shadows } from '@/styles/constants';
+
 
 // Styled Components
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #1e1b4b, #2a2e6b, #3b1e4b);
+  background: ${colors.backgroundGradient};
   color: #e0e7ff;
   font-family: 'Inter', sans-serif;
   width: 100%;
@@ -44,7 +45,7 @@ const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3rem;
-  background: linear-gradient(180deg, rgba(30, 27, 75, 0.9), rgba(59, 30, 75, 0.7));
+  background: linear-gradient(180deg, ${colors.primary}, ${colors.secondary});
   backdrop-filter: blur(8px);
   z-index: 1;
 
@@ -58,7 +59,6 @@ const HeroImage = styled(motion.div)`
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 100vh;
   object-fit: cover;
 
   &::after {
@@ -202,14 +202,16 @@ const GridItem = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(79, 70, 229, 0.2), transparent);
+    background: linear-gradient(45deg, transparent, ${colors.primary}, transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
   &:hover::before {
     opacity: 1;
+    
   }
+
 
   span {
     font-size: 1.25rem;
@@ -296,7 +298,7 @@ const gridItemVariants = {
   },
   hover: {
     scale: 1.05,
-    boxShadow: '0 0 20px rgba(79, 70, 229, 0.5)',
+    boxShadow: '0 0 20px #82816D',
     transition: { type: 'spring', stiffness: 300 },
   },
 };

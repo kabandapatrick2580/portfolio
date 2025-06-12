@@ -1,9 +1,9 @@
 // styles/constants.js
 export const colors = {
-  primary: '#4f46e5',
-  secondary: '#7c3aed',
+  primary: '#82816D',
+  secondary: '#1B2D2A',
   background: '#1e1b4b',
-  backgroundGradient: 'linear-gradient(135deg, #1e1b4b, #2a2e6b, #3b1e4b)',
+  backgroundGradient: 'linear-gradient(135deg, #AAA95A, #82816D, #1B2D2A)',
   textPrimary: '#e0e7ff',
   textSecondary: '#c4b5fd',
   accent: '#a5b4fc',
