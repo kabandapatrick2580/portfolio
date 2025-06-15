@@ -15,6 +15,7 @@ import Backend from '@/sections/Backend';
 import Frontend from '@/sections/Frontend';
 import Designing from '@/sections/Designing';
 import DevOps from '@/sections/DevOps';
+import Seo from '@/sections/Seo';
 import { colors, typography, spacing, shadows } from '@/styles/constants';
 
 
@@ -79,8 +80,6 @@ const Title = styled(motion.h1)`
   background: linear-gradient(90deg, #a5b4fc, #f0abfc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
-
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
@@ -106,6 +105,10 @@ const Sidebar = styled(motion.nav)`
   gap: 1rem;
   z-index: 20;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  width: 200px;
+  &hover{
+    width: 400px;
+  }
 
   @media (max-width: 768px) {
     width: 100%;
@@ -129,11 +132,9 @@ const SidebarItem = styled(motion.div)`
   font-size: 1rem;
   font-weight: 500;
   transition: background 0.3s ease;
-
   &:hover {
-    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    background: linear-gradient(90deg, #035354, #5a9491);
     color: #ffffff;
-    box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
   }
 
   svg {
@@ -155,7 +156,7 @@ const BackButton = styled(motion.button)`
   border-radius: 8px;
 
   &:hover {
-    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    background: linear-gradient(90deg, #035354, #5a9491);
     color: #ffffff;
   }
 
@@ -193,7 +194,7 @@ const GridItem = styled(motion.div)`
   border-radius: 12px;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 
   &::before {
     content: '';
@@ -340,13 +341,6 @@ const Grid = () => {
     { name: 'Designing', icon: <FiPenTool /> },
     { name: 'DevOps', icon: <FiGitBranch /> },
     { name: 'SEO', icon: <FiSearch /> },
-    { name: 'Mobile', icon: <FiSmartphone /> },
-  ];
-
-  const projects = [
-    { title: 'Project 1', description: 'A modern web app', categories: 'Web, Backend', link: '#' },
-    { title: 'Project 2', description: 'Creative UI design', categories: 'Frontend, Design', link: '#' },
-    { title: 'Project 3', description: 'CI/CD pipeline', categories: 'DevOps', link: '#' },
   ];
 
   return (
@@ -414,6 +408,7 @@ const Grid = () => {
                   {selectedGrid === 'Frontend' && <Frontend />}
                   {selectedGrid === 'Designing' && <Designing />}
                   {selectedGrid === 'DevOps' && <DevOps />}
+                  {selectedGrid === 'SEO' && <Seo />}
                 </ContentArea>
               </>
             ) : (

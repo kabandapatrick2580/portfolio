@@ -1,99 +1,142 @@
-import { motion } from 'framer-motion';
-import { FaServer, FaDatabase } from 'react-icons/fa';
-import styled from 'styled-components';
-import { FaLaptopCode } from 'react-icons/fa';
-import { BsDatabaseFillGear } from "react-icons/bs";
-import { LuCloudCog } from "react-icons/lu";
-import { SiCyberdefenders } from "react-icons/si";
-import { SiFramework } from "react-icons/si";
-import { GrTools } from "react-icons/gr";
-import Projects from '@/pages/projects';
-import { PiStudentBold } from "react-icons/pi";
-import { LiaGlobeSolid } from "react-icons/lia";
-import { MdReadMore } from "react-icons/md";
-import { ProjectBox, ProjectIcon, ProjectDetails, Subtitle, ProjectTittle, ProjectDescription, IconsRow, IconBox, IconBoxFill, IconLabel, ProjectsSection, Project } from '@/styles/Card.styled';
+import { motion } from "framer-motion";
+import { FaNodeJs, FaPython, FaDatabase } from "react-icons/fa";
+import { SiDjango, SiFlask, SiPostgresql, SiMysql, SiMongodb, SiExpress } from "react-icons/si";
+import {
+  Section,
+  Container,
+  Title,
+  Grid,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDesc,
+  StyledIcon,
+  Description,
+  ButtonWrapper,
+  Button,
+} from "@/styles/StyledComponents";
 
+const backendSkills = [
+  {
+    category: "Back-End Development",
+    items: [
+      {
+        name: "Node.js",
+        icon: <FaNodeJs style={{ color: "#22c55e", fontSize: "1.25rem" }} />,
+        description: "Building scalable server-side applications with JavaScript.",
+      },
+      {
+        name: "Express",
+        icon: <SiExpress style={{ color: "#1f2937", fontSize: "1.25rem" }} />,
+        description: "Creating RESTful APIs and middleware for Node.js applications.",
+      },
+      {
+        name: "Python",
+        icon: <FaPython style={{ color: "#2563eb", fontSize: "1.25rem" }} />,
+        description: "Developing robust back-end logic for web applications.",
+      },
+      {
+        name: "Django",
+        icon: <SiDjango style={{ color: "#16a34a", fontSize: "1.25rem" }} />,
+        description: "Building secure and scalable web apps with Django ORM and MVT architecture.",
+      },
+      {
+        name: "Flask",
+        icon: <SiFlask style={{ color: "#1f2937", fontSize: "1.25rem" }} />,
+        description: "Crafting lightweight APIs and microservices with Flask.",
+      },
+      {
+        name: "PostgreSQL",
+        icon: <SiPostgresql style={{ color: "#1e40af", fontSize: "1.25rem" }} />,
+        description: "Designing and optimizing relational databases for performance.",
+      },
+      {
+        name: "MySQL",
+        icon: <SiMysql style={{ color: "#f97316", fontSize: "1.25rem" }} />,
+        description: "Managing relational data with efficient queries and schemas.",
+      },
+      {
+        name: "MongoDB",
+        icon: <SiMongodb style={{ color: "#22c55e", fontSize: "1.25rem" }} />,
+        description: "Working with NoSQL databases for flexible, scalable data storage.",
+      },
+    ],
+  },
+  {
+    category: "Related Technologies",
+    items: [
+      {
+        name: "REST APIs",
+        icon: <FaDatabase style={{ color: "#4b5563", fontSize: "1.25rem" }} />,
+        description: "Designing and implementing secure, efficient APIs for front-end integration.",
+      },
+      {
+        name: "SQL",
+        icon: <FaDatabase style={{ color: "#3b82f6", fontSize: "1.25rem" }} />,
+        description: "Writing complex queries for data manipulation and analysis.",
+      },
+      {
+        name: "Docker",
+        icon: null,
+        description: "Containerizing applications for consistent deployment.",
+      },
+    ],
+  },
+];
 
-
-
-// Styled Components
-const Section = styled(motion.section)`
-  padding: 10px 0;
-`;
-
-const Container = styled.div`
-`;
-
-const Heading = styled.h1`
-  font-size: 1rem;
-  font-weight: bold;
-  color: #1a2745;
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-const List = styled.ol`
-  padding: 0;
-  margin: 1rem;
-  color: #374151; // gray-700
-  font-size: 10px;
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.25rem;
-
-    }
-  h3 {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #1a2745; // navy-800
-}
-  `;
-
-const Subheading = styled.p`
-  margin-top: 1rem;
-  color: #4b5563;
-  max-width: 32rem;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
-const Backend = () => {
+const BackendSkillsSection = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.8, ease: 'easeIn' },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
   };
 
   return (
-    <Section
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={containerVariants}
-    >
+    <Section>
       <Container>
-        <Heading>Backend Expertise</Heading>
-        <Subheading>
-          I build scalable, secure backend systems with expertise in RESTful APIs, databases, and cloud deployment. My focus is on clean code and high-performance solutions.
-        </Subheading>
-        <List>
-          <h3>Skills</h3>
-          <li><FaLaptopCode /> <span>RESTful API Development</span></li>
-          <li><BsDatabaseFillGear /> Database Design & Management(PostgreSQL, MongoDB)</li>
-          <li><LuCloudCog />Cloud Deployment (DigitalOcean, Azure)</li>
-          <li><SiCyberdefenders />Security Best Practices</li>
-          <li><SiFramework />Frameworks: Django, Flask</li>
-          <li><GrTools />Tool: Docker, Git</li>
-        </List>
+        <Title
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          Back-End Skills
+        </Title>
+        <Grid variants={containerVariants} initial="hidden" animate="visible">
+          {backendSkills.map((category, index) => (
+            <Card key={index} variants={itemVariants}>
+              <CardHeader>
+                <CardTitle>{category.category}</CardTitle>
+              </CardHeader>
+              {category.items.map((skill, idx) => (
+                <div key={idx} className="mb-3">
+                  <div className="flex items-center">
+                    {skill.icon && <StyledIcon>{skill.icon}</StyledIcon>}
+                    <CardTitle>{skill.name}</CardTitle>
+                  </div>
+                  <CardDesc>{skill.description}</CardDesc>
+                </div>
+              ))}
+            </Card>
+          ))}
+        </Grid>
+        <Description variants={itemVariants}>
+          I specialize in building robust, scalable back-end systems using Python and Node.js
+          frameworks, paired with relational and NoSQL databases. My projects showcase my ability to
+          create efficient APIs and manage complex data, and I’m dedicated to deepening my back-end
+          expertise.
+        </Description>
+        <ButtonWrapper variants={itemVariants}>
+          <Button href="/projects" aria-label="View my back-end projects">
+            See My Projects
+          </Button>
+        </ButtonWrapper>
       </Container>
     </Section>
   );
 };
 
-export default Backend;
+export default BackendSkillsSection;

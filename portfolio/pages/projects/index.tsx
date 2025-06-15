@@ -39,9 +39,8 @@ export default function Projects() {
                           </IconBox>
                         </Link>
                       )}
-                    
                       {project.title && (
-                        <Link href={`/projects/${project.id}`} passHref target="_blank" rel="noopener noreferrer">
+                        <Link href={`/projects/${project.id}`} passHref rel="noopener noreferrer">
                         <IconBoxFill>
                               <MdReadMore />
                             <IconLabel>Details</IconLabel>

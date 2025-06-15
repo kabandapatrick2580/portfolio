@@ -6,10 +6,11 @@ export const colors = {
   backgroundGradient: 'linear-gradient(135deg, #AAA95A, #82816D, #1B2D2A)',
   textPrimary: '#e0e7ff',
   textSecondary: '#c4b5fd',
-  accent: '#a5b4fc',
+  accent: '#ffd64f',
   cardBg: 'rgba(17, 24, 39, 0.8)',
   glassBg: 'rgba(255, 255, 255, 0.05)',
   border: 'rgba(255, 255, 255, 0.1)',
+  textTertiary: '#755d0e',
 };
 
 export const typography = {
@@ -27,5 +28,7 @@ export const spacing = {
 
 export const shadows = {
   card: '0 4px 20px rgba(0, 0, 0, 0.2)',
-  glow: '0 0 15px rgba(79, 70, 229, 0.5)',
+  glow: '0 0 15px rgba(170, 169, 90, 1)',
+  glowWhite: '0 0 15px rgba(255, 255, 255, 1)',
 };
+

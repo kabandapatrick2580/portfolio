@@ -82,6 +82,25 @@ const ProjectBox = styled(motion.div)`
   cursor: pointer;
   gap: 0.5rem;
 `;
+
+export const FormContainer = styled(motion.div)`
+  min-width: 600px;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: ${colors.textPrimary};
+  font-family: ${typography.fontFamily};
+  font-size: ${typography.fontSizeBody};
+  font-weight: 400;
+  position: relative;
+  padding: ${spacing.padding};
+  @media (max-width: 768px) {
+    max-width: 100%;
+    width: 100%;
+    min-width: 300px;
+
+
+}`
 const ProjectDetails = styled.div`
   display: flex;
   flex-direction: column;
@@ -120,7 +139,57 @@ const ProjectIcon = styled.div`
 
 const iconColor = "#334155"; // navy-600
 
+export const Input = styled.input`
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid ${colors.border};
+  border-radius: 0.375rem;
+  background-color: ${colors.glassBg};
+  color: ${colors.textPrimary};
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 
+  &:focus {
+    border-color: ${colors.accent};
+    outline: none;
+  }
+`;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid ${colors.border};
+  border-radius: 0.375rem;
+  background-color: ${colors.glassBg};
+  color: ${colors.textPrimary};
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: ${colors.accent};
+    outline: none;
+  }
+`;
+
+export const Button = styled.button`
+  padding: 0.5rem 1rem;
+  background-color: ${colors.accent};
+  color: ${colors.textTertiary};
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  &:hover {
+    background-color: #e09f3e; // Darker shade for hover effect
+  }
+  
+  &:disabled {
+    background-color: #d1d5db; // gray-300
+    cursor: not-allowed;
+  }
+`;
 export {
   IconsRow,
   IconBox,
@@ -134,5 +203,17 @@ export {
   ProjectTittle,
   ProjectDescription,
   ProjectIcon,
-  iconColor
+  iconColor,
 };
+
+export const TwoColumns = styled(motion.div)`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;

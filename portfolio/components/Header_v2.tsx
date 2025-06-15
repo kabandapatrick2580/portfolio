@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { colors } from '@/styles/constants';
+import Link from 'next/link';
+import { colors, shadows } from '@/styles/constants';
 
 interface SidebarProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
-
 
 // Styled Components
 const HeaderWrapper = styled.header`
@@ -21,7 +21,7 @@ const HeaderWrapper = styled.header`
   align-items: center;
   padding: 0 20px;
   z-index: 1000;
-  margin-bottom:2rem
+  margin-bottom: 2rem;
 `;
 
 const Logo = styled.div`
@@ -37,13 +37,31 @@ const HamburgerButton = styled.button<SidebarProps>`
   color: #fff;
   font-size: 24px;
   z-index: 1100;
-  display: ${({ isOpen }) => (isOpen ? 'none' : 'block')};
+  display: ${({ $isOpen }) => ($isOpen ? 'none' : 'block')};
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    box-shadow: ${shadows.glowWhite};
+    transition: opacity 0.3s ease-in-out;
+    z-index: 2200;
+  }
+
+  &:hover::before {
+    opacity: 0.8;
+  }
 `;
 
 const Sidebar = styled.div<SidebarProps>`
   position: fixed;
   top: 0;
-  right: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+  right: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
   width: 250px;
   height: 100vh;
   background-color: ${colors.glassBg};
@@ -71,10 +89,12 @@ const NavLinks = styled.ul`
 
   li {
     margin: 20px 0;
-    a {
+
+    a { /* Target the <a> rendered by Link */
       color: #fff;
       text-decoration: none;
       font-size: 18px;
+
       &:hover {
         color: #00ff88;
       }
@@ -83,7 +103,7 @@ const NavLinks = styled.ul`
 `;
 
 // Header Component
-const Header = () => {
+const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -94,19 +114,35 @@ const Header = () => {
     <>
       <HeaderWrapper>
         <Logo></Logo>
-        <HamburgerButton isOpen={isOpen} onClick={toggleSidebar}>
+        <HamburgerButton $isOpen={isOpen} onClick={toggleSidebar}>
           <FaBars />
         </HamburgerButton>
       </HeaderWrapper>
-      <Sidebar isOpen={isOpen}>
+      <Sidebar $isOpen={isOpen}>
         <CloseButton onClick={toggleSidebar}>
           <FaTimes />
         </CloseButton>
         <NavLinks>
-          <li><a href="/" onClick={toggleSidebar}>Home</a></li>
-          <li><a href="#about" onClick={toggleSidebar}>About</a></li>
-          <li><a href="/projects" onClick={toggleSidebar}>Projects</a></li>
-          <li><a href="#contact" onClick={toggleSidebar}>Contact</a></li>
+          <li>
+            <Link href="/" onClick={toggleSidebar}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/#about" onClick={toggleSidebar}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/projects" onClick={toggleSidebar}>
+              Projects
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" onClick={toggleSidebar}>
+              Contact
+            </Link>
+          </li>
         </NavLinks>
       </Sidebar>
     </>
