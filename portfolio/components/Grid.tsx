@@ -166,13 +166,11 @@ const BackButton = styled(motion.button)`
 `;
 
 const ContentArea = styled(motion.div)`
-  flex: 1;
-  padding: 3rem;
-  margin-left: 280px;
+  margin-left: 200px;
 
   @media (max-width: 768px) {
     margin-left: 0;
-    padding: 2rem;
+    padding: 1rem;
     margin-top: 4rem;
   }
 `;
@@ -351,20 +349,7 @@ const Grid = () => {
         variants={heroVariants}
       >
         <HeroContent>
-          <Title
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 150, damping: 10 }}
-          >
-            Patrick Kabanda
-          </Title>
-          <Subtitle
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            Full Stack Web Developer
-          </Subtitle>
+          
 
           <AnimatePresence>
             {selectedGrid ? (
@@ -375,6 +360,7 @@ const Grid = () => {
                   animate="visible"
                   exit="hidden"
                 >
+                  Patrick Kabanda
                   <BackButton
                     onClick={handleBack}
                     whileHover={{ scale: 1.1 }}
@@ -397,7 +383,7 @@ const Grid = () => {
                       </SidebarItem>
                     ))}
                 </Sidebar>
-
+                
                 <ContentArea
                   variants={contentVariants}
                   initial="hidden"
@@ -412,26 +398,42 @@ const Grid = () => {
                 </ContentArea>
               </>
             ) : (
-              <GridContainer
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                {grids.map((grid) => (
-                  <GridItem
-                    key={grid.name}
-                    onClick={() => handleClick(grid.name)}
-                    variants={gridItemVariants}
-                    initial="hidden"
-                    animate="visible"
-                    whileHover="hover"
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {grid.icon}
-                    <span>{grid.name}</span>
-                  </GridItem>
-                ))}
-              </GridContainer>
+              <>
+                <Title
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ type: 'spring', stiffness: 150, damping: 10 }}
+                >
+                  Patrick Kabanda
+                </Title>
+                <Subtitle
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                  Full Stack Web Developer
+                </Subtitle>
+                <GridContainer
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  {grids.map((grid) => (
+                    <GridItem
+                      key={grid.name}
+                      onClick={() => handleClick(grid.name)}
+                      variants={gridItemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      whileHover="hover"
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {grid.icon}
+                      <span>{grid.name}</span>
+                    </GridItem>
+                  ))}
+                </GridContainer>
+              </>
             )}
           </AnimatePresence>
         </HeroContent>
