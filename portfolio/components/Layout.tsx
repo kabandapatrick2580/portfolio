@@ -1,5 +1,3 @@
-import Header from './Header';
-import Footer from './Footer';
 import Header_v2 from './Header_v2';
 import styled from 'styled-components';
 

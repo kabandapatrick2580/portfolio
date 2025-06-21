@@ -58,7 +58,7 @@ export default function Contact() {
                 <meta name="description" content="Get in touch with Me for inquiries, feedback, or collaboration opportunities." />
             </Head>
           <TwoColumns>
-            <img 
+            <img
               src="/images/message-me.jpg" 
               alt="Contact Image" 
               className="hidden lg:block w-full h-full object-cover" 

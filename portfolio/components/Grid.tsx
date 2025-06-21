@@ -281,42 +281,6 @@ const GridItem = styled(motion.div)`
 
 
 
-const ProjectCard = styled(motion.div)`
-  background: rgba(17, 24, 39, 0.8);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #e0e7ff;
-  }
-
-  p {
-    color: #c4b5fd;
-    font-size: 1rem;
-    margin: 0.5rem 0;
-  }
-
-  a {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: linear-gradient(90deg, #4f46e5, #7c3aed);
-    color: #ffffff;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-  }
-`;
-
-const ProjectsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-`;
 
 // Framer Motion Variants
 const heroVariants = {
