@@ -325,15 +325,6 @@ const contentVariants = {
   },
 };
 
-const projectCardVariants = {
-  hidden: { y: 50, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { type: 'spring', stiffness: 120, damping: 15 },
-  },
-  hover: { scale: 1.03, boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)' },
-};
 
 // Grid Component
 const Grid = () => {
