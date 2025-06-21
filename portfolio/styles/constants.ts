@@ -2,6 +2,12 @@
 export const colors = {
   primary: '#82816D',
   secondary: '#1B2D2A',
+  primary_color_light: 'rgba(96, 165, 250, 0.4)',
+  primary_color_dark: 'rgba(59, 130, 246, 0.8)',
+  primary_color_gradient: 'linear-gradient(135deg, #AAA95A, #82816D, #1B2D2A)',
+  secondary_color_light: 'rgba(96, 165, 250, 0.4)',
+  secondary_color_dark: 'rgba(59, 130, 246, 0.8)',
+  secondary_color_gradient: 'linear-gradient(135deg, #AAA95A, #82816D, #1B2D2A)',
   background: '#1e1b4b',
   backgroundGradient: 'linear-gradient(135deg, #AAA95A, #82816D, #1B2D2A)',
   textPrimary: '#e0e7ff',

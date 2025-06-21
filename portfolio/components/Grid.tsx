@@ -1,23 +1,28 @@
 // components/Grid.js
+// Note: Add 'use client'; at the top if using Next.js App Router
 import { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FiCode, 
-  FiServer, 
-  FiPenTool, 
-  FiGitBranch, 
-  FiSearch, 
+import {
+  FiSidebar,
+  FiCode,
+  FiServer,
+  FiPenTool,
+  FiGitBranch,
+  FiSearch,
   FiSmartphone,
   FiHome,
 } from 'react-icons/fi';
 import Backend from '@/sections/Backend';
 import Frontend from '@/sections/Frontend';
-import Designing from '@/sections/Designing';
+import ITSupport from '@/sections/ITSupport';
 import DevOps from '@/sections/DevOps';
 import Seo from '@/sections/Seo';
 import { colors, typography, spacing, shadows } from '@/styles/constants';
 
+interface SidebarProps {
+  $isSidebarOpen: boolean;
+}
 
 // Styled Components
 const Container = styled.div`
@@ -28,6 +33,10 @@ const Container = styled.div`
   color: #e0e7ff;
   font-family: 'Inter', sans-serif;
   width: 100%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const HeroSection = styled(motion.div)`
@@ -46,7 +55,7 @@ const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3rem;
-  background: linear-gradient(180deg, ${colors.primary}, ${colors.secondary});
+  background: white;
   backdrop-filter: blur(8px);
   z-index: 1;
 
@@ -72,6 +81,9 @@ const HeroImage = styled(motion.div)`
     background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
     opacity: 0.3;
   }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Title = styled(motion.h1)`
@@ -92,11 +104,11 @@ const Subtitle = styled(motion.h2)`
   margin-bottom: 2rem;
 `;
 
-const Sidebar = styled(motion.nav)`
+const Sidebar = styled(motion.nav)<SidebarProps>`
   position: fixed;
   top: 0;
   left: 0;
-  width: 280px;
+  width: 200px;
   height: 100%;
   background: rgba(17, 24, 39, 0.95);
   padding: 2rem;
@@ -105,20 +117,6 @@ const Sidebar = styled(motion.nav)`
   gap: 1rem;
   z-index: 20;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-  width: 200px;
-  &hover{
-    width: 400px;
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    justify-content: center;
-    padding: 1rem;
-    position: sticky;
-    top: 0;
-  }
 `;
 
 const SidebarItem = styled(motion.div)`
@@ -136,7 +134,6 @@ const SidebarItem = styled(motion.div)`
     background: linear-gradient(90deg, #035354, #5a9491);
     color: #ffffff;
   }
-
   svg {
     font-size: 1.5rem;
   }
@@ -165,9 +162,16 @@ const BackButton = styled(motion.button)`
   }
 `;
 
-const ContentArea = styled(motion.div)`
-  margin-left: 200px;
+const SidebarIcon = styled.div<SidebarProps>`
+  position: fixed;
+  top: 1rem;
+  left: ${({ $isSidebarOpen }) => ($isSidebarOpen ? '200px' : '1rem')};
+  z-index: 1100;
+  transition: left 0.3s ease;
+`;
 
+const ContentArea = styled(motion.div)<SidebarProps>`
+  margin-left: ${({ $isSidebarOpen }) => ($isSidebarOpen ? ' 0px' : '0')};
   @media (max-width: 768px) {
     margin-left: 0;
     padding: 1rem;
@@ -187,12 +191,14 @@ const GridItem = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid ${colors.primary_color_light};
+  color: #e0e7ff;
   border-radius: 12px;
   cursor: pointer;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 
   &::before {
     content: '';
@@ -201,27 +207,76 @@ const GridItem = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, transparent, ${colors.primary}, transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 1;
   }
 
-  &:hover::before {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to top, rgba(59, 130, 246, 0.8), rgba(96, 165, 250, 0.4));
+    transition: height 0.9s ease-out;
+    z-index: 0;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+
+  &:hover::after {
+    height: 90%;
+    animation: ripple 5s infinite ease-in-out;
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(20px);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  span::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    bottom: 10px;
+    left: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 1s ease;
+    z-index: 2;
+  }
+
+  &:hover span::before {
     opacity: 1;
-    
+    transform: translateY(-80px) translateX(-10px);
+    transition: opacity 0.3s ease, transform 1.2s ease-out;
   }
-
 
   span {
     font-size: 1.25rem;
     font-weight: 600;
     color: #e0e7ff;
     margin-top: 1rem;
+    position: relative;
+    z-index: 3;
   }
 
   svg {
     font-size: 2.5rem;
     color: #a5b4fc;
+    position: relative;
+    z-index: 3;
   }
 `;
 
@@ -297,8 +352,8 @@ const gridItemVariants = {
   },
   hover: {
     scale: 1.05,
-    boxShadow: '0 0 20px #82816D',
     transition: { type: 'spring', stiffness: 300 },
+    boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
   },
 };
 
@@ -324,6 +379,7 @@ const projectCardVariants = {
 // Grid Component
 const Grid = () => {
   const [selectedGrid, setSelectedGrid] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const handleClick = (grid: string) => {
     setSelectedGrid(grid);
@@ -333,31 +389,41 @@ const Grid = () => {
     setSelectedGrid(null);
   };
 
+  const handleSidebarToggle = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   const grids = [
     { name: 'Backend', icon: <FiServer /> },
     { name: 'Frontend', icon: <FiCode /> },
-    { name: 'Designing', icon: <FiPenTool /> },
+    { name: 'IT Support', icon: <FiSmartphone /> },
     { name: 'DevOps', icon: <FiGitBranch /> },
     { name: 'SEO', icon: <FiSearch /> },
   ];
 
   return (
     <Container>
-      <HeroSection
-        initial="hidden"
-        animate="visible"
-        variants={heroVariants}
-      >
+      <SidebarIcon $isSidebarOpen={isSidebarOpen}>
+        <motion.button
+          onClick={handleSidebarToggle}
+          aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+        >
+          <FiSidebar size={32} color="black" />
+        </motion.button>
+      </SidebarIcon>
+      <HeroSection initial="hidden" animate="visible" variants={heroVariants}>
         <HeroContent>
-          
-
           <AnimatePresence>
             {selectedGrid ? (
               <>
                 <Sidebar
+                  $isSidebarOpen={isSidebarOpen}
                   variants={sidebarVariants}
                   initial="hidden"
-                  animate="visible"
+                  animate={isSidebarOpen ? 'visible' : 'hidden'}
                   exit="hidden"
                 >
                   Patrick Kabanda
@@ -383,8 +449,8 @@ const Grid = () => {
                       </SidebarItem>
                     ))}
                 </Sidebar>
-                
                 <ContentArea
+                  $isSidebarOpen={isSidebarOpen}
                   variants={contentVariants}
                   initial="hidden"
                   animate="visible"
@@ -392,7 +458,7 @@ const Grid = () => {
                 >
                   {selectedGrid === 'Backend' && <Backend />}
                   {selectedGrid === 'Frontend' && <Frontend />}
-                  {selectedGrid === 'Designing' && <Designing />}
+                  {selectedGrid === 'IT Support' && <ITSupport />}
                   {selectedGrid === 'DevOps' && <DevOps />}
                   {selectedGrid === 'SEO' && <Seo />}
                 </ContentArea>
@@ -443,7 +509,6 @@ const Grid = () => {
           transition={{ duration: 1, ease: 'easeOut' }}
         />
       </HeroSection>
-
     </Container>
   );
 };

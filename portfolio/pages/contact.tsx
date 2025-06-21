@@ -58,7 +58,11 @@ export default function Contact() {
                 <meta name="description" content="Get in touch with Me for inquiries, feedback, or collaboration opportunities." />
             </Head>
           <TwoColumns>
-            <img src="/images/message-me.jpg" alt="Contact Image" className="w-full h-full object-cover" />
+            <img 
+              src="/images/message-me.jpg" 
+              alt="Contact Image" 
+              className="hidden lg:block w-full h-full object-cover" 
+            />
             <div className="container mx-auto p-4 py-12 min-h-screen flex flex-col items-center">
                 <motion.h1
                     className="text-4xl font-bold text-center mb-8 text-white"

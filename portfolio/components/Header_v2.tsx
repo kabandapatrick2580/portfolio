@@ -38,7 +38,9 @@ const HamburgerButton = styled.button<SidebarProps>`
   font-size: 24px;
   z-index: 1100;
   display: ${({ $isOpen }) => ($isOpen ? 'none' : 'block')};
-  position: relative;
+  position: absolute;
+  top: 10px;
+  right: 20px;
 
   &::before {
     content: '';
@@ -56,6 +58,13 @@ const HamburgerButton = styled.button<SidebarProps>`
   &:hover::before {
     opacity: 0.8;
   }
+  @media (max-width: 768px) {
+    display: block;
+    color: black;
+    font-size: 28px;
+    display: ${({ $isOpen }) => ($isOpen ? 'none' : 'block')};
+
+  }
 `;
 
 const Sidebar = styled.div<SidebarProps>`
@@ -69,6 +78,13 @@ const Sidebar = styled.div<SidebarProps>`
   z-index: 1000;
   padding: 20px;
   color: #fff;
+
+  @media (max-width: 768px) {
+    width: 200px;
+    right: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
 `;
 
 const CloseButton = styled.button`
@@ -134,7 +150,7 @@ const Header: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link href="/projects" onClick={toggleSidebar}>
+            <Link href="/projects" onClick={toggleSidebar} target='_blank'>
               Projects
             </Link>
           </li>

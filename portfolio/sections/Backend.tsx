@@ -60,12 +60,7 @@ const backendSkills = [
         icon: <SiMongodb style={{ color: "#22c55e", fontSize: "1.25rem" }} />,
         description: "Working with NoSQL databases for flexible, scalable data storage.",
       },
-    ],
-  },
-  {
-    category: "Related Technologies",
-    items: [
-      {
+            {
         name: "REST APIs",
         icon: <FaDatabase style={{ color: "#4b5563", fontSize: "1.25rem" }} />,
         description: "Designing and implementing secure, efficient APIs for front-end integration.",
@@ -106,20 +101,13 @@ const BackendSkillsSection = () => {
           Back-End Skills
         </Title>
         <Grid variants={containerVariants} initial="hidden" animate="visible">
-          {backendSkills.map((category, index) => (
-            <Card key={index} variants={itemVariants}>
+          {backendSkills[0].items.map((skill, index) => (
+          <Card key={index} variants={itemVariants}>
               <CardHeader>
-                <CardTitle>{category.category}</CardTitle>
+                {skill.icon && <StyledIcon>{skill.icon}</StyledIcon>}
+                <CardTitle>{skill.name}</CardTitle>
               </CardHeader>
-              {category.items.map((skill, idx) => (
-                <div key={idx} className="mb-3">
-                  <div className="flex items-center">
-                    {skill.icon && <StyledIcon>{skill.icon}</StyledIcon>}
-                    <CardTitle>{skill.name}</CardTitle>
-                  </div>
-                  <CardDesc>{skill.description}</CardDesc>
-                </div>
-              ))}
+              <CardDesc>{skill.description}</CardDesc>
             </Card>
           ))}
         </Grid>

@@ -52,8 +52,7 @@ export const Grid = styled(motion.div)`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-
-  @media (min-width: 640px) {
+  @media (max-width: 640px) {
     grid-template-columns: repeat(2, 1fr);
   }
   @media (min-width: 1024px) {
@@ -110,7 +109,6 @@ export const Description = styled(motion.p)`
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
-
   ${({ theme }) => theme.darkMode && `color: #d1d5db;`}
 `;
 
