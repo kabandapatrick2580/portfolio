@@ -7,7 +7,6 @@ import {
   FiSidebar,
   FiCode,
   FiServer,
-  FiPenTool,
   FiGitBranch,
   FiSearch,
   FiSmartphone,
@@ -18,7 +17,7 @@ import Frontend from '@/sections/Frontend';
 import ITSupport from '@/sections/ITSupport';
 import DevOps from '@/sections/DevOps';
 import Seo from '@/sections/Seo';
-import { colors, typography, spacing, shadows } from '@/styles/constants';
+import { colors } from '@/styles/constants';
 
 interface SidebarProps {
   $isSidebarOpen: boolean;
@@ -280,11 +279,7 @@ const GridItem = styled(motion.div)`
   }
 `;
 
-const ProjectsSection = styled(motion.section)`
-  padding: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
+
 
 const ProjectCard = styled(motion.div)`
   background: rgba(17, 24, 39, 0.8);

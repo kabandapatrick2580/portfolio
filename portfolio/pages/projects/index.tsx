@@ -2,8 +2,7 @@
 import { projects } from "@/data/ProjectsData";
 import Link from "next/link";
 import Head from "next/head";
-import { motion } from "framer-motion";
-import { ProjectBox, ProjectIcon, ProjectDetails, Subtitle, ProjectTittle, ProjectDescription, IconsRow, IconBox, IconBoxFill, IconLabel, ProjectsSection, Project, Container } from '@/styles/Card.styled';
+import { ProjectBox, ProjectIcon, ProjectDetails, Subtitle, ProjectTittle, ProjectDescription, IconsRow, IconBox, IconBoxFill, IconLabel, ProjectsSection, Container } from '@/styles/Card.styled';
 import { PiStudentBold } from "react-icons/pi";
 import { MdReadMore } from "react-icons/md";
 import { LiaGlobeSolid } from "react-icons/lia";
