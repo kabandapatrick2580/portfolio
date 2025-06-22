@@ -30,6 +30,10 @@ export const Container = styled.div`
     padding-left: 2rem;
     padding-right: 2rem;
   }
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0;
+  }
 `;
 
 export const Title = styled(motion.h2)`
@@ -53,7 +57,7 @@ export const Grid = styled(motion.div)`
   grid-template-columns: 1fr;
   gap: 1.5rem;
   @media (max-width: 640px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   @media (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
