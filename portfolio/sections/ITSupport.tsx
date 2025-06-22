@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 import { FaReact, FaJsSquare } from "react-icons/fa";
-import { SiTypescript, SiTailwindcss, SiCss3 } from "react-icons/si";
+import { SiTailwindcss, SiCss3 } from "react-icons/si";
+import { FcOnlineSupport } from "react-icons/fc";
+import { RiAdminFill } from "react-icons/ri";
+import { GiAutoRepair } from "react-icons/gi";
+import { MdInstallDesktop } from "react-icons/md";
+import { TbRestore } from "react-icons/tb";
+import { BiSolidNetworkChart } from "react-icons/bi";
+
+
 import {
   Section,
   Container,
@@ -22,32 +30,32 @@ const itSupportSkills = [
     items: [
       {
         name: "Network Configuration",
-        icon: <FaReact style={{ color: "#3b82f6", fontSize: "1.25rem" }} />,
+        icon: <BiSolidNetworkChart style={{ color: "#3b82f6", fontSize: "5rem" }} />,
         description: "Setting up and managing network devices and protocols.",
       },
       {
         name: "System Administration",
-        icon: <FaJsSquare style={{ color: "#facc15", fontSize: "1.25rem" }} />,
+        icon: <RiAdminFill style={{ color: "#facc15", fontSize: "5rem" }} />,
         description: "Maintaining and troubleshooting operating systems and software.",
       },
       {
         name: "Technical Support",
-        icon: <SiTypescript style={{ color: "#2563eb", fontSize: "1.25rem" }} />,
+        icon: <FcOnlineSupport  style={{ color: "#2563eb", fontSize: "5rem" }} />,
         description: "Providing assistance with hardware and software issues.",
       },
       {
         name: "Hardware Repair",
-        icon: <SiTailwindcss style={{ color: "#14b8a6", fontSize: "1.25rem" }} />,
+        icon: <GiAutoRepair style={{ color: "#14b8a6", fontSize: "5rem" }} />,
         description: "Diagnosing and fixing physical components of computers.",
       },
       {
         name: "Software Installation",
-        icon: <SiCss3 style={{ color: "#7dd3fc", fontSize: "1.25rem" }} />,
+        icon: <MdInstallDesktop style={{ color: "#7dd3fc", fontSize: "5rem" }} />,
         description: "Installing and configuring software applications.",
       },
       {
         name: "Data Recovery",
-        icon: <FaReact style={{ color: "#3b82f6", fontSize: "1.25rem" }} />,
+        icon: <TbRestore style={{ color: "#3b82f6", fontSize: "5rem" }} />,
         description: "Recovering lost or corrupted data from storage devices.",
       },
     ],

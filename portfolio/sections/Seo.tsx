@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { FaSearch, FaChartLine } from "react-icons/fa";
+import { FaSearch} from "react-icons/fa";
 import { SiGooglesearchconsole, SiGoogleanalytics, SiPodcastindex, SiAmazoncloudwatch, SiFusionauth } from "react-icons/si";
+import { SiCss3 } from "react-icons/si";
 import {
   Section,
   Container,
@@ -22,33 +22,38 @@ const seoSkills = [
     items: [
       {
         name: "Keyword Research",
-        icon: <FaSearch style={{ color: "#3b82f6", fontSize: "1.25rem" }} />,
+        icon: <FaSearch style={{ color: "#3b82f6" }} />,
         description: "Identifying high-impact keywords to drive organic traffic using tools like Ahrefs and SEMrush.",
       },
       {
         name: "On-Page SEO",
-        icon: <SiPodcastindex style={{ color: "#facc15", fontSize: "1.25rem" }} />,
+        icon: <SiPodcastindex style={{ color: "#facc15" }} />,
         description: "Optimizing content, meta tags, and site structure for better search rankings.",
       },
       {
         name: "Technical SEO",
-        icon: <SiAmazoncloudwatch style={{ color: "#34d399", fontSize: "1.25rem" }} />,
+        icon: <SiAmazoncloudwatch style={{ color: "#34d399" }} />,
         description: "Enhancing site performance, crawlability, and indexing with structured data and sitemaps.",
       },
       {
         name: "Link Building",
-        icon: <SiFusionauth style={{ color: "#f97316", fontSize: "1.25rem" }} />,
+        icon: <SiFusionauth style={{ color: "#f97316" }} />,
         description: "Developing strategies to acquire high-quality backlinks for improved domain authority.",
       },
       {
         name: "Google Analytics",
-        icon: <SiGoogleanalytics style={{ color: "#f97316", fontSize: "1.25rem" }} />,
+        icon: <SiGoogleanalytics style={{ color: "#f97316" }} />,
         description: "Analyzing traffic and user behavior to optimize SEO performance.",
       },
       {
         name: "Google Search Console",
-        icon: <SiGooglesearchconsole style={{ color: "#34a853", fontSize: "1.25rem" }} />,
+        icon: <SiGooglesearchconsole style={{ color: "#34a853" }} />,
         description: "Monitoring and resolving indexing issues to ensure search visibility.",
+      },
+      {
+        name: "Semantic HTML",
+        icon: <SiCss3 style={{ color: "#7dd3fc" }} />,
+        description: "Writing clean, accessible HTML for better SEO and user experience.",
       },
     ],
   },

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { FaReact, FaJsSquare } from "react-icons/fa";
-import { SiTypescript, SiTailwindcss, SiCss3 } from "react-icons/si";
+import { SiTypescript, SiTailwindcss, SiCss3, SiNextdotjs } from "react-icons/si";
+import { DiResponsive } from "react-icons/di";
+import { TbBrandReactNative } from "react-icons/tb";
 import {
   Section,
   Container,
@@ -15,40 +17,52 @@ import {
   ButtonWrapper,
   Button,
 } from "@/styles/StyledComponents";
-
+const FontSize = "5rem";
 const frontendSkills = [
   {
     category: "Front-End & Mobile Development",
     items: [
       {
         name: "React",
-        icon: <FaReact style={{ color: "#3b82f6", fontSize: "1.25rem" }} />,
+        icon: <FaReact style={{ color: "#3b82f6", fontSize: FontSize }} />,
         description: "Building dynamic, responsive web UIs with hooks and state management.",
       },
       {
         name: "React Native",
-        icon: <FaReact style={{ color: "#3b82f6", fontSize: "1.25rem" }} />,
+        icon: <TbBrandReactNative style={{ color: "#3c82f6", fontSize: FontSize }} />,
         description: "Developing cross-platform mobile apps with native-like performance.",
       },
       {
         name: "JavaScript",
-        icon: <FaJsSquare style={{ color: "#facc15", fontSize: "1.25rem" }} />,
+        icon: <FaJsSquare style={{ color: "#facc15", fontSize: FontSize }} />,
         description: "Core language for interactive web and mobile features.",
       },
       {
         name: "TypeScript",
-        icon: <SiTypescript style={{ color: "#2563eb", fontSize: "1.25rem" }} />,
+        icon: <SiTypescript style={{ color: "#2563eb", fontSize: FontSize }} />,
         description: "Enhancing code reliability with type safety in React projects.",
       },
       {
         name: "Tailwind CSS",
-        icon: <SiTailwindcss style={{ color: "#14b8a6", fontSize: "1.25rem" }} />,
+        icon: <SiTailwindcss style={{ color: "#14b8a6", fontSize: FontSize }} />,
         description: "Crafting modern, responsive designs efficiently.",
       },
       {
         name: "CSS3",
-        icon: <SiCss3 style={{ color: "#7dd3fc", fontSize: "1.25rem" }} />,
+        icon: <SiCss3 style={{ color: "#7dd3fc", fontSize: FontSize }} />,
         description: "Styling web and mobile interfaces with animations and layouts.",
+      },
+      // Add more skills as needed
+      {
+        name: "Next.js",
+        icon: <SiNextdotjs style={{ color: "black", fontSize: FontSize }} />,
+        description: "Building server-rendered React applications for better performance and SEO.",
+      },
+
+      {
+        name: "Responsive Design",
+        icon: <DiResponsive style={{ color: "blue", fontSize: FontSize }} />,
+        description: "Ensuring applications look great on all devices with flexible layouts.",
       },
     ],
   },

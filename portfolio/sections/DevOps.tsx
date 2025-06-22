@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { SiDocker, SiDigitalocean, SiNginx, SiServerfault, SiWatchtower } from "react-icons/si";
 import { FaLock } from "react-icons/fa";
+import { VscAzure } from "react-icons/vsc";
+import { DiGithubFull } from "react-icons/di";
 import {
   Section,
   Container,
@@ -22,34 +24,44 @@ const devOpsSkills = [
     items: [
       {
         name: "Docker",
-        icon: <SiDocker style={{ color: "#0db7ed", fontSize: "1.25rem" }} />,
+        icon: <SiDocker style={{ color: "#0db7ed" }} />,
         description: "Containerizing applications for consistent development and deployment.",
       },
       {
         name: "Digital Ocean",
-        icon: <SiDigitalocean style={{ color: "#0080ff", fontSize: "1.25rem" }} />,
+        icon: <SiDigitalocean style={{ color: "#0080ff" }} />,
         description: "Deploying and managing applications on Digital Ocean cloud infrastructure.",
       },
       {
         name: "Nginx",
-        icon: <SiNginx style={{ color: "#009639", fontSize: "1.25rem" }} />,
+        icon: <SiNginx style={{ color: "#009639" }} />,
         description: "Configuring web servers for high-performance hosting and load balancing.",
       },
       {
         name: "Hosting",
-        icon: <SiWatchtower style={{ color: "#f97316", fontSize: "1.25rem" }} />,
+        icon: <SiWatchtower style={{ color: "#f97316" }} />,
         description: "Setting up and managing hosting environments for web applications.",
       },
       {
         name: "SSL Configurations",
-        icon: <FaLock style={{ color: "#4b5563", fontSize: "1.25rem" }} />,
+        icon: <FaLock style={{ color: "#4b5563" }} />,
         description: "Implementing secure HTTPS connections with SSL/TLS certificates.",
       },
       {
         name: "Server Management",
-        icon: <SiServerfault style={{ color: "#f97316", fontSize: "1.25rem" }} />,
+        icon: <SiServerfault style={{ color: "#f97316" }} />,
         description: "Overseeing server health, performance, and security for optimal uptime.",
       },
+      {
+        name: "Deployment Automation(Github Actions)",
+        icon: <DiGithubFull style={{ color: "#f97316" }} />,
+        description: "Automating deployment processes using GitHub Actions for continuous integration and delivery.",
+      },
+      {
+        name: "Azure",
+        icon: <VscAzure style={{ color: "#0078d4" }} />,
+        description: "Utilizing Microsoft Azure for cloud services, including virtual machines and databases.",
+      }
     ],
   },
 ];

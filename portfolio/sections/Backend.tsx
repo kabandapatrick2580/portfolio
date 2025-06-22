@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaNodeJs, FaPython, FaDatabase } from "react-icons/fa";
 import { SiDjango, SiFlask, SiPostgresql, SiMysql, SiMongodb, SiExpress } from "react-icons/si";
+import { LiaDocker } from "react-icons/lia";
 import {
   Section,
   Container,
@@ -21,58 +22,48 @@ const backendSkills = [
     category: "Back-End Development",
     items: [
       {
-        name: "Node.js",
-        icon: <FaNodeJs style={{ color: "#22c55e", fontSize: "1.25rem" }} />,
-        description: "Building scalable server-side applications with JavaScript.",
-      },
-      {
-        name: "Express",
-        icon: <SiExpress style={{ color: "#1f2937", fontSize: "1.25rem" }} />,
-        description: "Creating RESTful APIs and middleware for Node.js applications.",
-      },
-      {
         name: "Python",
-        icon: <FaPython style={{ color: "#2563eb", fontSize: "1.25rem" }} />,
+        icon: <FaPython style={{ color: "#2563eb" }} />,
         description: "Developing robust back-end logic for web applications.",
       },
       {
         name: "Django",
-        icon: <SiDjango style={{ color: "#16a34a", fontSize: "1.25rem" }} />,
+        icon: <SiDjango style={{ color: "#16a34a" }} />,
         description: "Building secure and scalable web apps with Django ORM and MVT architecture.",
       },
       {
         name: "Flask",
-        icon: <SiFlask style={{ color: "#1f2937", fontSize: "1.25rem" }} />,
+        icon: <SiFlask style={{ color: "#1f2937" }} />,
         description: "Crafting lightweight APIs and microservices with Flask.",
       },
       {
         name: "PostgreSQL",
-        icon: <SiPostgresql style={{ color: "#1e40af", fontSize: "1.25rem" }} />,
+        icon: <SiPostgresql style={{ color: "#1e40af" }} />,
         description: "Designing and optimizing relational databases for performance.",
       },
       {
         name: "MySQL",
-        icon: <SiMysql style={{ color: "#f97316", fontSize: "1.25rem" }} />,
+        icon: <SiMysql style={{ color: "#f97316" }} />,
         description: "Managing relational data with efficient queries and schemas.",
       },
       {
         name: "MongoDB",
-        icon: <SiMongodb style={{ color: "#22c55e", fontSize: "1.25rem" }} />,
+        icon: <SiMongodb style={{ color: "#22c55e" }} />,
         description: "Working with NoSQL databases for flexible, scalable data storage.",
       },
             {
         name: "REST APIs",
-        icon: <FaDatabase style={{ color: "#4b5563", fontSize: "1.25rem" }} />,
+        icon: <FaDatabase style={{ color: "#4b5563" }} />,
         description: "Designing and implementing secure, efficient APIs for front-end integration.",
       },
       {
         name: "SQL",
-        icon: <FaDatabase style={{ color: "#3b82f6", fontSize: "1.25rem" }} />,
+        icon: <FaDatabase style={{ color: "#3b82f6" }} />,
         description: "Writing complex queries for data manipulation and analysis.",
       },
       {
         name: "Docker",
-        icon: null,
+        icon: <LiaDocker style={{ color: "dark-blue" }} />,
         description: "Containerizing applications for consistent deployment.",
       },
     ],

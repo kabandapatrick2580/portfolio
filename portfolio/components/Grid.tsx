@@ -353,6 +353,7 @@ const Grid = () => {
 
   return (
     <Container>
+      {selectedGrid ?(
       <SidebarIcon $isSidebarOpen={isSidebarOpen}>
         <motion.button
           onClick={handleSidebarToggle}
@@ -364,6 +365,19 @@ const Grid = () => {
           <FiSidebar size={32} color="black" />
         </motion.button>
       </SidebarIcon>
+      ) : (
+        <SidebarIcon $isSidebarOpen={isSidebarOpen}>
+          <motion.button
+            onClick={handleSidebarToggle}
+            aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            style={{ display: 'none' }}
+          >
+            <FiSidebar size={32} color="black" />
+          </motion.button>
+        </SidebarIcon>
+      )}
       <HeroSection initial="hidden" animate="visible" variants={heroVariants}>
         <HeroContent>
           <AnimatePresence>

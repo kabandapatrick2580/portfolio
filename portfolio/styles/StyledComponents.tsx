@@ -99,7 +99,7 @@ export const CardDesc = styled.p`
 
 export const StyledIcon = styled.span`
   margin-right: 0.75rem;
-  font-size: 1.25rem;
+  font-size: 5rem;
 `;
 
 export const Description = styled(motion.p)`
