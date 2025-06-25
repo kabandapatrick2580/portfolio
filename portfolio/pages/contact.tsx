@@ -12,9 +12,6 @@ interface FormData {
     message: string;
 }
 
-
-
-
 export default function Contact() {
     const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');

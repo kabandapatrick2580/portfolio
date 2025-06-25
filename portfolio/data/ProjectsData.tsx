@@ -10,6 +10,7 @@ export interface Project {
   technologies?: string[]; // Optional field for technologies used
   videoUrl?: string; // Optional field for project video URL
   id?: number; // Optional field for unique project ID
+  images?: string[]; // Optional field for multiple images
 }
 
 export const projects: Project[] = [
@@ -30,7 +31,12 @@ export const projects: Project[] = [
     url: "https://www.netpipo.com",
     categories: ["Backend", "Frontend"],
     longDescription: "Netpipo is a web application designed to enhance user interactions and provide a robust, scalable experience. As a full-stack developer, I contributed to both the front-end and back-end development, ensuring seamless integration and performance across the platform.",
-    image: "/images/Profile.jpg", // Example image URL
+    images: [
+      "/images/netpipo_1.png",
+      "/images/netpipo_2.png",
+      "/images/netpipo_3.png",
+      "/images/netpipo_4.png",
+    ],
     technologies: ["Flask", "React", "JavaScript", "SCSS", "PostgreSQL"],
     },
   {

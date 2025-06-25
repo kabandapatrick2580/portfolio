@@ -1,4 +1,3 @@
-// pages/projects/[slug].tsx
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -6,59 +5,399 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import styled from "styled-components";
+import { useRef } from "react";
 
-// Assuming this is your Project interface in ProjectsData
+// Project Interface
 interface Project {
   id: string;
   title: string;
   description: string;
   longDescription?: string;
   image?: string;
-  video?: string; // New: Video URL for project demo
-  images?: string[]; // New: Array for image carousel
+  video?: string;
+  images?: string[];
   url: string;
-  githubUrl?: string; // New: GitHub repository link
+  githubUrl?: string;
   categories: string[];
   technologies: string[];
-  role?: string; // New: Your role in the project
-  features?: string[]; // New: Key features
-  challenges?: { problem: string; solution: string }[]; // New: Challenges and solutions
-  results?: string[]; // New: Measurable outcomes
-  date?: string; // New: Project completion date
+  role?: string;
+  features?: string[];
+  challenges?: { problem: string; solution: string }[];
+  results?: string[];
+  date?: string;
 }
 
 interface ProjectPageProps {
   project: Project | null;
 }
 
+// Styled Components
+const PageContainer = styled(motion.div)`
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  background-color: ${({ theme }) => theme.background || "#f7fafc"};
+  @media (min-width: 640px) {
+    padding: 4rem 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding: 4rem 2rem;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 80rem;
+  margin: 0 auto;
+`;
+
+const ProjectTitle = styled(motion.h1)`
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.text || "#1a202c"};
+  text-align: center;
+  margin-bottom: 2rem;
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+`;
+
+const MediaContainer = styled(motion.div)`
+  margin-bottom: 3rem;
+`;
+
+const MediaWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  @media (min-width: 768px) {
+    height: 24rem;
+  }
+`;
+
+const VideoElement = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const CarouselWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+const NavButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+`;
+
+const PrevButton = styled(NavButton)`
+  left: 1rem;
+`;
+
+const NextButton = styled(NavButton)`
+  right: 1rem;
+`;
+
+const DotsContainer = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const Dot = styled.button<{ active: boolean }>`
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: ${({ active }) => (active ? "#fff" : "rgba(255, 255, 255, 0.5)")};
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  transform: ${({ active }) => (active ? "scale(1.25)" : "scale(1)")};
+`;
+
+const PlaceholderMedia = styled.div`
+  width: 100%;
+  height: 16rem;
+  background: ${({ theme }) => theme.placeholder || "#e2e8f0"};
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.placeholderText || "#718096"};
+  @media (min-width: 768px) {
+    height: 24rem;
+  }
+`;
+
+const GridContainer = styled(motion.div)`
+  display: grid;
+  gap: 2rem;
+  @media (min-width: 1024px) {
+    grid-template-columns: 2fr 1fr;
+  }
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text || "#1a202c"};
+  margin-bottom: 1rem;
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.textSecondary || "#4a5568"};
+  line-height: 1.75;
+`;
+
+const List = styled.ul`
+  list-style: disc;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: ${({ theme }) => theme.textSecondary || "#4a5568"};
+`;
+
+const ChallengeItem = styled.div`
+  border-left: 4px solid #2563eb;
+  padding-left: 1rem;
+`;
+
+const Sidebar = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const SidebarSection = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SidebarTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text || "#1a202c"};
+  margin-bottom: 0.5rem;
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
+
+const Tag = styled.span<{ isTech?: boolean }>`
+  background: ${({ isTech, theme }) =>
+    isTech ? theme.tagTech || "#bfdbfe" : theme.tagCategory || "#e5e7eb"};
+  color: ${({ isTech, theme }) =>
+    isTech ? theme.tagTechText || "#1e40af" : theme.tagCategoryText || "#1f2937"};
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+`;
+
+const LinkButton = styled.a`
+  display: block;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s;
+`;
+
+const LiveDemoButton = styled(LinkButton)`
+  background: #2563eb;
+  &:hover {
+    background: #1d4ed8;
+  }
+`;
+
+const SourceButton = styled(LinkButton)`
+  background: #4b5563;
+  &:hover {
+    background: #374151;
+  }
+`;
+
+const BackLink = styled(Link)`
+  color: ${({ theme }) => theme.link || "#2563eb"};
+  text-decoration: none;
+  font-size: 1.125rem;
+  text-align: center;
+  display: block;
+  margin-top: 3rem;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const LoadingContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.background || "#f7fafc"};
+`;
+
+const ErrorContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.background || "#f7fafc"};
+`;
+
+const ErrorTitle = styled.h1`
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.text || "#1a202c"};
+  margin-bottom: 1rem;
+`;
+
+// Theme interface
+interface Theme {
+  background?: string;
+  text?: string;
+  textSecondary?: string;
+  placeholder?: string;
+  placeholderText?: string;
+  tagTech?: string;
+  tagTechText?: string;
+  tagCategory?: string;
+  tagCategoryText?: string;
+  link?: string;
+}
+
+// Theme objects
+const theme: Theme = {
+  background: "#f7fafc",
+  text: "#1a202c",
+  textSecondary: "#4a5568",
+  placeholder: "#e2e8f0",
+  placeholderText: "#718096",
+  tagTech: "#bfdbfe",
+  tagTechText: "#1e40af",
+  tagCategory: "#e5e7eb",
+  tagCategoryText: "#1f2937",
+  link: "#2563eb",
+};
+
+const darkTheme: Theme = {
+  background: "#1a202c",
+  text: "#f7fafc",
+  textSecondary: "#a0aec0",
+  placeholder: "#4a5568",
+  placeholderText: "#a0aec0",
+  tagTech: "#2b6cb0",
+  tagTechText: "#bfdbfe",
+  tagCategory: "#718096",
+  tagCategoryText: "#e2e8f0",
+  link: "#60a5fa",
+};
+
 export default function ProjectPage({ project }: ProjectPageProps) {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const autoSlideInterval = useRef<NodeJS.Timeout | null>(null);
+  const AUTO_SLIDE_DELAY = 5000;
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Auto-slide effect
+  useEffect(() => {
+    if (project?.images && project.images.length > 1) {
+      autoSlideInterval.current = setInterval(() => {
+        setCurrentImageIndex((prev) =>
+          prev === project.images!.length - 1 ? 0 : prev + 1
+        );
+      }, AUTO_SLIDE_DELAY);
+    }
+
+    return () => {
+      if (autoSlideInterval.current) {
+        clearInterval(autoSlideInterval.current);
+      }
+    };
+  }, [project?.images]);
+
+  // Reset auto-slide on user interaction
+  const resetAutoSlide = () => {
+    if (autoSlideInterval.current) {
+      clearInterval(autoSlideInterval.current);
+    }
+    if (project?.images && project.images.length > 1) {
+      autoSlideInterval.current = setInterval(() => {
+        setCurrentImageIndex((prev) =>
+          prev === project.images!.length - 1 ? 0 : prev + 1
+        );
+      }, AUTO_SLIDE_DELAY);
+    }
+  };
+
+  const handlePrev = () => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? (project.images?.length || 1) - 1 : prev - 1
+    );
+    resetAutoSlide();
+  };
+
+  const handleNext = () => {
+    setCurrentImageIndex((prev) =>
+      prev === (project.images?.length || 1) - 1 ? 0 : prev + 1
+    );
+    resetAutoSlide();
+  };
+
   if (router.isFallback) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-        <p className="text-xl font-semibold text-gray-700 dark:text-gray-300">Loading...</p>
-      </div>
+      <LoadingContainer theme={theme}>
+        <Text style={{ fontSize: "1.25rem", fontWeight: 600 }}>Loading...</Text>
+      </LoadingContainer>
     );
   }
 
   if (!project) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Project Not Found</h1>
-        <Link
-          href="/projects"
-          className="text-blue-600 dark:text-blue-400 hover:underline text-lg"
-          aria-label="Return to projects page"
-        >
+      <ErrorContainer theme={theme}>
+        <ErrorTitle theme={theme}>Project Not Found</ErrorTitle>
+        <BackLink href="/projects" aria-label="Return to projects page" theme={theme}>
           Back to Projects
-        </Link>
-      </div>
+        </BackLink>
+      </ErrorContainer>
     );
   }
 
@@ -84,229 +423,224 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         <meta property="og:url" content={`https://yourdomain.com/projects/${project.id}`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <motion.div
-        className="min-h-screen bg-gray-100 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8"
+      <PageContainer
         initial="hidden"
         animate={isMounted ? "visible" : "hidden"}
         variants={containerVariants}
+        theme={theme}
       >
-        <div className="max-w-5xl mx-auto">
-          {/* Project Header */}
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-center mb-8"
-            variants={itemVariants}
-          >
+        <ContentWrapper>
+          <ProjectTitle variants={itemVariants} theme={theme}>
             {project.title}
-          </motion.h1>
+          </ProjectTitle>
 
           {/* Media Section */}
-          <motion.div className="mb-12" variants={itemVariants}>
+          <MediaContainer variants={itemVariants}>
             {project.video ? (
-              <div className="relative w-full h-64 md:h-96 rounded-lg overflow-hidden">
-                <video
+              <MediaWrapper>
+                <VideoElement
                   src={project.video}
                   controls
-                  className="w-full h-full object-cover"
                   aria-label={`Video demo of ${project.title}`}
                 />
-              </div>
-            ) : project.images && project.images.length > 1 ? (
-              <div className="relative w-full h-64 md:h-96 rounded-lg overflow-hidden">
-                {/* Placeholder for image carousel - implement with a library like react-slick */}
-                <p className="text-center text-gray-600 dark:text-gray-400">
-                  [Image Carousel Placeholder: {project.images.length} images]
-                </p>
-              </div>
+              </MediaWrapper>
+            ) : project.images && project.images.length > 0 ? (
+              <MediaWrapper>
+                <CarouselWrapper>
+                  {project.images.map((img, index) => (
+                    <Image
+                      key={index}
+                      src={img}
+                      alt={`${project.title} screenshot ${index + 1}`}
+                      fill
+                      style={{
+                        objectFit: "cover",
+                        transition: "opacity 0.5s",
+                        opacity: index === currentImageIndex ? 1 : 0,
+                      }}
+                      priority={index === 0}
+                    />
+                  ))}
+                  {project.images.length > 1 && (
+                    <>
+                      <PrevButton onClick={handlePrev} aria-label="Previous image">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </PrevButton>
+                      <NextButton onClick={handleNext} aria-label="Next image">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </NextButton>
+                      <DotsContainer>
+                        {project.images.map((_, i) => (
+                          <Dot
+                            key={i}
+                            active={i === currentImageIndex}
+                            onClick={() => {
+                              setCurrentImageIndex(i);
+                              resetAutoSlide();
+                            }}
+                            aria-label={`Go to image ${i + 1}`}
+                          />
+                        ))}
+                      </DotsContainer>
+                    </>
+                  )}
+                </CarouselWrapper>
+              </MediaWrapper>
             ) : project.image ? (
-              <div className="relative w-full h-64 md:h-96 rounded-lg overflow-hidden">
+              <MediaWrapper>
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover"
+                  style={{ objectFit: "cover" }}
                   priority
                 />
-              </div>
+              </MediaWrapper>
             ) : (
-              <div className="w-full h-64 md:h-96 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500 dark:text-gray-400">No media available</p>
-              </div>
+              <PlaceholderMedia theme={theme}>
+                <Text>No media available</Text>
+              </PlaceholderMedia>
             )}
-          </motion.div>
+          </MediaContainer>
 
           {/* Project Details */}
-          <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-8" variants={itemVariants}>
+          <GridContainer variants={itemVariants}>
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* Description */}
-              <section>
-                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
-                  Overview
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {project.longDescription || project.description}
-                </p>
-              </section>
+            <MainContent>
+              <Section>
+                <SectionTitle theme={theme}>Overview</SectionTitle>
+                <Text theme={theme}>{project.longDescription || project.description}</Text>
+              </Section>
 
-              {/* Key Features */}
               {project.features && (
-                <section>
-                  <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
-                    Key Features
-                  </h2>
-                  <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
+                <Section>
+                  <SectionTitle theme={theme}>Key Features</SectionTitle>
+                  <List theme={theme}>
                     {project.features.map((feature, index) => (
                       <li key={index}>{feature}</li>
                     ))}
-                  </ul>
-                </section>
+                  </List>
+                </Section>
               )}
 
-              {/* Challenges and Solutions */}
               {project.challenges && (
-                <section>
-                  <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
-                    Challenges & Solutions
-                  </h2>
-                  <div className="space-y-4">
+                <Section>
+                  <SectionTitle theme={theme}>Challenges & Solutions</SectionTitle>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                     {project.challenges.map((challenge, index) => (
-                      <div key={index} className="border-l-4 border-blue-600 pl-4">
-                        <p className="text-gray-600 dark:text-gray-300">
+                      <ChallengeItem key={index}>
+                        <Text theme={theme}>
                           <strong>Challenge:</strong> {challenge.problem}
-                        </p>
-                        <p className="text-gray-600 dark:text-gray-300">
+                        </Text>
+                        <Text theme={theme}>
                           <strong>Solution:</strong> {challenge.solution}
-                        </p>
-                      </div>
+                        </Text>
+                      </ChallengeItem>
                     ))}
                   </div>
-                </section>
+                </Section>
               )}
 
-              {/* Results */}
               {project.results && (
-                <section>
-                  <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
-                    Results
-                  </h2>
-                  <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
+                <Section>
+                  <SectionTitle theme={theme}>Results</SectionTitle>
+                  <List theme={theme}>
                     {project.results.map((result, index) => (
                       <li key={index}>{result}</li>
                     ))}
-                  </ul>
-                </section>
+                  </List>
+                </Section>
               )}
-            </div>
+            </MainContent>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-6">
-              {/* Technologies */}
+            <Sidebar>
               {project.technologies && (
-                <section>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                    Technologies
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
+                <SidebarSection>
+                  <SidebarTitle theme={theme}>Technologies</SidebarTitle>
+                  <TagContainer>
                     {project.technologies.map((tech, index) => (
-                      <span
-                        key={index}
-                        className="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm"
-                      >
+                      <Tag key={index} isTech theme={theme}>
                         {tech}
-                      </span>
+                      </Tag>
                     ))}
-                  </div>
-                </section>
+                  </TagContainer>
+                </SidebarSection>
               )}
 
-              {/* Categories */}
               {project.categories && (
-                <section>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                    Categories
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
+                <SidebarSection>
+                  <SidebarTitle theme={theme}>Categories</SidebarTitle>
+                  <TagContainer>
                     {project.categories.map((category, index) => (
-                      <span
-                        key={index}
-                        className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm"
-                      >
+                      <Tag key={index} theme={theme}>
                         {category}
-                      </span>
+                      </Tag>
                     ))}
-                  </div>
-                </section>
+                  </TagContainer>
+                </SidebarSection>
               )}
 
-              {/* Role */}
               {project.role && (
-                <section>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                    My Role
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">{project.role}</p>
-                </section>
+                <SidebarSection>
+                  <SidebarTitle theme={theme}>My Role</SidebarTitle>
+                  <Text theme={theme}>{project.role}</Text>
+                </SidebarSection>
               )}
 
-              {/* Date */}
               {project.date && (
-                <section>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                    Date
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">{project.date}</p>
-                </section>
+                <SidebarSection>
+                  <SidebarTitle theme={theme}>Date</SidebarTitle>
+                  <Text theme={theme}>{project.date}</Text>
+                </SidebarSection>
               )}
 
-              {/* Links */}
-              <section>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                  Links
-                </h3>
-                <div className="space-y-2">
-                  <a
+              <SidebarSection>
+                <SidebarTitle theme={theme}>Links</SidebarTitle>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  <LiveDemoButton
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block bg-blue-600 text-white text-center px-4 py-2 rounded-lg hover:bg-blue-700 transition"
                     aria-label={`Visit live demo of ${project.title}`}
                   >
                     Live Demo
-                  </a>
+                  </LiveDemoButton>
                   {project.githubUrl && (
-                    <a
+                    <SourceButton
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block bg-gray-600 text-white text-center px-4 py-2 rounded-lg hover:bg-gray-700 transition"
                       aria-label={`View source code of ${project.title}`}
                     >
                       View Source
-                    </a>
+                    </SourceButton>
                   )}
                 </div>
-              </section>
-            </div>
-          </motion.div>
+              </SidebarSection>
+            </Sidebar>
+          </GridContainer>
 
-          {/* Back to Projects */}
-          <motion.div className="text-center mt-12" variants={itemVariants}>
-            <Link
-              href="/projects"
-              className="text-blue-600 dark:text-blue-400 hover:underline text-lg"
-              aria-label="Return to projects page"
-            >
-              Back to Projects
-            </Link>
-          </motion.div>
-        </div>
-      </motion.div>
+          <BackLink
+            href="/projects"
+            aria-label="Return to projects page"
+            theme={theme}
+            variants={itemVariants}
+          >
+            Back to Projects
+          </BackLink>
+        </ContentWrapper>
+      </PageContainer>
     </>
   );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { projects } = await import("@/data/ProjectsData"); // Dynamic import
+  const { projects } = await import("@/data/ProjectsData");
   const paths = projects
     .filter((project) => typeof project.id === "string" && project.id)
     .map((project) => ({
@@ -315,12 +649,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: "blocking", // Better for SEO and UX
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { projects } = await import("@/data/ProjectsData"); // Dynamic import
+  const { projects } = await import("@/data/ProjectsData");
   const slug = params?.slug as string;
   const project = projects.find((p) => String(p.id) === slug);
 
@@ -328,6 +662,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       project: project || null,
     },
-    revalidate: 60, // ISR: Revalidate every 60 seconds
+    revalidate: 60,
   };
 };
