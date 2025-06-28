@@ -8,7 +8,7 @@ export const colors = {
   secondary_color_light: 'rgba(96, 165, 250, 0.4)',
   secondary_color_dark: 'rgba(59, 130, 246, 0.8)',
   secondary_color_gradient: 'linear-gradient(135deg, #AAA95A, #82816D, #1B2D2A)',
-  background: '#1e1b4b',
+  background: '#000000',
   backgroundGradient: 'linear-gradient(135deg, #AAA95A, #82816D, #1B2D2A)',
   textPrimary: '#e0e7ff',
   textSecondary: '#c4b5fd',
@@ -16,7 +16,8 @@ export const colors = {
   cardBg: 'rgba(17, 24, 39, 0.8)',
   glassBg: 'rgba(255, 255, 255, 0.05)',
   border: 'rgba(255, 255, 255, 0.1)',
-  textTertiary: '#755d0e',
+  textTertiary: 'rgba(0, 207, 169)',
+  textQuaternary: 'rgba(0, 207, 169, 0.5)',
 };
 
 export const typography = {

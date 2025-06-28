@@ -28,7 +28,7 @@ const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: ${colors.backgroundGradient};
+  background: ${colors.background};
   color: #e0e7ff;
   font-family: 'Inter', sans-serif;
   width: 100%;
@@ -54,7 +54,7 @@ const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3rem;
-  background: white;
+  background: ${colors.glassBg};
   backdrop-filter: blur(8px);
   z-index: 1;
 
@@ -190,8 +190,8 @@ const GridItem = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid ${colors.primary_color_light};
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid ${colors.textQuaternary};
   color: #e0e7ff;
   border-radius: 12px;
   cursor: pointer;
@@ -218,7 +218,7 @@ const GridItem = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 0;
-    background: linear-gradient(to top, rgba(59, 130, 246, 0.8), rgba(96, 165, 250, 0.4));
+    background: linear-gradient(to top, rgba(0, 207, 169, 1), rgba(70, 240, 209, 0.4));
     transition: height 0.9s ease-out;
     z-index: 0;
     box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);

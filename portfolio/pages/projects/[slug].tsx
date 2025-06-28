@@ -51,11 +51,13 @@ const ContentWrapper = styled.div`
 `;
 
 const ProjectTitle = styled(motion.h1)`
-  font-size: 2.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: ${({ theme }) => theme.text || "#1a202c"};
-  text-align: center;
+  text-align:   left;
   margin-bottom: 2rem;
+  position: absolute;
+  top: 1px;
   @media (min-width: 768px) {
     font-size: 3rem;
   }
@@ -71,7 +73,8 @@ const MediaWrapper = styled.div`
   height: auto;
   border-radius: 0.5rem;
   overflow: hidden;
-  @media (min-width: 768px) {
+  height: 100vh;
+  @media (max-width: 768px) {
     height: 24rem;
   }
 `;
