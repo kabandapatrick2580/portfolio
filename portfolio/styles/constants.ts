@@ -16,8 +16,8 @@ export const colors = {
   cardBg: 'rgba(17, 24, 39, 0.8)',
   glassBg: 'rgba(255, 255, 255, 0.05)',
   border: 'rgba(255, 255, 255, 0.1)',
-  textTertiary: 'rgba(0, 207, 169)',
-  textQuaternary: 'rgba(0, 207, 169, 0.5)',
+  textTertiary: '#7acfbb,',
+  textQuaternary: '#abfcf8',
 };
 
 export const typography = {

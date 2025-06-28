@@ -88,19 +88,52 @@ const HeroImage = styled(motion.div)`
 const Title = styled(motion.h1)`
   font-size: 3.5rem;
   font-weight: 800;
-  background: linear-gradient(90deg, #a5b4fc, #f0abfc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #abfcf8;
+  margin-bottom: 1rem;
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
+
+  span {
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 1px #abfcf8;
+
+  }
+
+
 `;
 
 const Subtitle = styled(motion.h2)`
   font-size: 1.5rem;
-  color: #c4b5fd;
+  color: ${colors.textTertiary};
   font-weight: 400;
   margin-bottom: 2rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background: ${colors.textQuaternary};
+    top: 3rem;
+    left: 0;
+    transition: width 1s ease;
+    animation: pulse 3s ease-in-out;
+  }
+    
+  @keyframes pulse {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 50%;
+    }
+  }
+
 `;
 
 const Sidebar = styled(motion.nav)<SidebarProps>`
@@ -218,7 +251,7 @@ const GridItem = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 0;
-    background: linear-gradient(to top, rgba(0, 207, 169, 1), rgba(70, 240, 209, 0.4));
+    background: linear-gradient(to top, rgba(93, 217, 188, 1), rgba(171, 252, 248, 0.7));
     transition: height 0.9s ease-out;
     z-index: 0;
     box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
@@ -434,14 +467,14 @@ const Grid = () => {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: 'spring', stiffness: 150, damping: 10 }}
                 >
-                  Patrick Kabanda
+                  PATRICK <span>KABANDA</span> 
                 </Title>
                 <Subtitle
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                  Full Stack Web Developer
+                  Full Stack Engineer
                 </Subtitle>
                 <GridContainer
                   initial={{ opacity: 0 }}

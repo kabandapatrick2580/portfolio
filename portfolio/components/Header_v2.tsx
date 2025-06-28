@@ -60,7 +60,6 @@ const HamburgerButton = styled.button<SidebarProps>`
   }
   @media (max-width: 768px) {
     display: block;
-    color: black;
     font-size: 28px;
     display: ${({ $isOpen }) => ($isOpen ? 'none' : 'block')};
 
