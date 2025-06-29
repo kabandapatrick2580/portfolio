@@ -36,7 +36,7 @@ interface ProjectPageProps {
 const PageContainer = styled(motion.div)`
   min-height: 100vh;
   padding: 4rem 1rem;
-  background-color: ${({ theme }) => "#f7fafc"};
+  background-color: "#f7fafc"
   @media (min-width: 640px) {
     padding: 4rem 1.5rem;
   }
@@ -53,7 +53,7 @@ const ContentWrapper = styled.div`
 const ProjectTitle = styled(motion.h1)`
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${({ theme }) => "#1a202c"};
+  color: "#1a202c";
   text-align:   left;
   margin-bottom: 2rem;
   position: absolute;
@@ -143,7 +143,7 @@ const PlaceholderMedia = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) =>  "#718096"};
+  color: "#718096";
   @media (min-width: 768px) {
     height: 24rem;
   }
@@ -171,12 +171,12 @@ const Section = styled.section`
 const SectionTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: 600;
-  color: ${({ theme }) => "#1a202c"};
+  color: "#1a202c";
   margin-bottom: 1rem;
 `;
 
 const Text = styled.p`
-  color: ${({ theme }) =>  "#4a5568"};
+  color: "#4a5568";
   line-height: 1.75;
 `;
 
@@ -186,7 +186,7 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  color: ${({ theme }) => "#4a5568"};
+  color: "#4a5568";
 `;
 
 const ChallengeItem = styled.div`
@@ -208,7 +208,7 @@ const SidebarSection = styled.section`
 const SidebarTitle = styled.h3`
   font-size: 1.25rem;
   font-weight: 600;
-  color: ${({ theme }) => "#1a202c"};
+  color: "#1a202c";
   margin-bottom: 0.5rem;
 `;
 
@@ -219,9 +219,9 @@ const TagContainer = styled.div`
 `;
 
 const Tag = styled.span<{ isTech?: boolean }>`
-  background: ${({ isTech, theme }) =>
+  background: ${({ isTech}) =>
     isTech ?  "#bfdbfe" :  "#e5e7eb"};
-  color: ${({ isTech, theme }) =>
+  color: ${({ isTech }) =>
     isTech ?  "#1e40af" : "#1f2937"};
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
@@ -253,7 +253,7 @@ const SourceButton = styled(LinkButton)`
 `;
 
 const BackLink = styled(Link)`
-  color: ${({ theme }) => "#2563eb"};
+  color: "#2563eb";
   text-decoration: none;
   font-size: 1.125rem;
   text-align: center;
@@ -269,7 +269,7 @@ const LoadingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => "#f7fafc"};
+  background:"#f7fafc";
 `;
 
 const ErrorContainer = styled.div`
@@ -278,13 +278,13 @@ const ErrorContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => "#f7fafc"};
+  background: "#f7fafc";
 `;
 
 const ErrorTitle = styled.h1`
   font-size: 1.875rem;
   font-weight: 700;
-  color: ${({ theme }) => "#1a202c"};
+  color: "#1a202c";
   margin-bottom: 1rem;
 `;
 
