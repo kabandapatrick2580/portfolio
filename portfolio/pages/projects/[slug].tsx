@@ -302,19 +302,7 @@ interface Theme {
   link?: string;
 }
 
-// Theme objects
-const theme: Theme = {
-  background: "#f7fafc",
-  text: "#1a202c",
-  textSecondary: "#4a5568",
-  placeholder: "#e2e8f0",
-  placeholderText: "#718096",
-  tagTech: "#bfdbfe",
-  tagTechText: "#1e40af",
-  tagCategory: "#e5e7eb",
-  tagCategoryText: "#1f2937",
-  link: "#2563eb",
-};
+
 
 
 export default function ProjectPage({ project }: ProjectPageProps) {
