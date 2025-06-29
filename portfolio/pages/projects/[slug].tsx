@@ -429,7 +429,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                       alt={`${project.title} screenshot ${index + 1}`}
                       fill
                       style={{
-                        objectFit: "cover",
+                        objectFit: "fit",
                         transition: "opacity 0.5s",
                         opacity: index === currentImageIndex ? 1 : 0,
                       }}
