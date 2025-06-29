@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { colors, typography, spacing, shadows } from '@/styles/constants';
+import { colors, typography} from '@/styles/constants';
 
 export const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: ${colors.backgroundGradient};
+  background: black;
   color: #e0e7ff;
   font-family: 'Inter', sans-serif;
   width: 100%;
@@ -31,7 +31,11 @@ const IconBox = styled(motion.div)`
   }
   transition: background-color 0.3s ease;
 `;
-
+export const ContactIcon = styled.div`
+  color: ${colors.textTertiary};
+  display: flex;
+  gap: 1rem;
+  `;
 const IconBoxFill = styled(IconBox)`
   background-color: #e2e8f0; // gray-200
   color: #1a2745; // navy-800
@@ -93,7 +97,6 @@ export const FormContainer = styled(motion.div)`
   font-size: ${typography.fontSizeBody};
   font-weight: 400;
   position: relative;
-  padding: ${spacing.padding};
   @media (max-width: 768px) {
     max-width: 100%;
     width: 100%;
@@ -135,9 +138,12 @@ const ProjectIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
-const iconColor = "#334155"; // navy-600
+const iconColor = styled.span`
+  color: #1a2745; // navy-800
+  font-size: 1.5rem;
+`;
 
 export const Input = styled.input`
   width: 100%;
@@ -150,7 +156,7 @@ export const Input = styled.input`
   transition: border-color 0.3s ease;
 
   &:focus {
-    border-color: ${colors.accent};
+    border-color: ${colors.textTertiary};
     outline: none;
   }
 `;
@@ -166,23 +172,25 @@ export const Textarea = styled.textarea`
   transition: border-color 0.3s ease;
 
   &:focus {
-    border-color: ${colors.accent};
+    border-color: ${colors.textTertiary};
     outline: none;
   }
 `;
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  background-color: ${colors.accent};
-  color: ${colors.textTertiary};
+  background-color: ${colors.textTertiary};
+  color: black;
+  font-weight: bold;
   border: none;
   border-radius: 0.375rem;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
+  transition: scale 0.2s ease;
   &:hover {
-    background-color: #e09f3e; // Darker shade for hover effect
+    scale: 1.05;
   }
   
   &:disabled {

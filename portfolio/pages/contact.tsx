@@ -2,9 +2,9 @@ import { useState } from 'react';
 import Head from 'next/head'; // Import Head for SEO
 import Link from 'next/link';
 import { motion } from 'framer-motion'; // Import motion for animations
-import { Container, FormContainer, Input, Textarea, Button, TwoColumns } from '@/styles/Card.styled'; // Import styled components
+import { Container, FormContainer, Input, Textarea, Button, TwoColumns, ContactIcon } from '@/styles/Card.styled'; // Import styled components
 import { TbBrandLinkedinFilled } from "react-icons/tb";
-import { FaSearch, FaGithub } from "react-icons/fa";
+import { FaPhone, FaGithub } from "react-icons/fa";
 
 interface FormData {
     name: string;
@@ -139,15 +139,20 @@ export default function Contact() {
               <div className="mt-8">
                 <h2 className="text-lg font-semibold text-white mb-4">Connect with Me</h2>
                 <div className="flex justify-center space-x-6">
-                  <Link href="#" className="text-blue-400 hover:text-blue-600">
-                    <TbBrandLinkedinFilled className="text-2xl" />
-                  </Link>
-                  <Link href="#" className="text-blue-400 hover:text-blue-600">
-                    <FaSearch className="text-2xl" />
-                  </Link>
-                  <Link href="#" className="text-blue-400 hover:text-blue-600">
-                    <FaGithub className="text-2xl" />
-                  </Link>
+
+                  <ContactIcon>
+                    <Link href="https://www.linkedin.com/in/patrick-kabanda-b88b051b1/" target="_blank" rel="noopener noreferrer">
+                      <TbBrandLinkedinFilled className="text-2xl" />
+                    </Link>
+                    <Link href="https://github.com/kabandapatrick2580" target='_blank' rel="noopener noreferrer" >
+                      <FaGithub className="text-2xl" />
+                    </Link>
+                    <Link href="#">
+                      <FaPhone className="text-2xl" />
+                      
+                    </Link>
+                    <p>+250 780 840 983</p>
+                  </ContactIcon>
                 </div>
               </div>
 

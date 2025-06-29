@@ -16,7 +16,7 @@ export const colors = {
   cardBg: 'rgba(17, 24, 39, 0.8)',
   glassBg: 'rgba(255, 255, 255, 0.05)',
   border: 'rgba(255, 255, 255, 0.1)',
-  textTertiary: '#7acfbb,',
+  textTertiary: '#7acfbb',
   textQuaternary: '#abfcf8',
   textColor: '#90a1a3'
 };
