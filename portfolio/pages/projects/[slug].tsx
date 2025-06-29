@@ -138,7 +138,7 @@ const Dot = styled.button<{ active: boolean }>`
 const PlaceholderMedia = styled.div`
   width: 100%;
   height: 16rem;
-  background: ${({ theme }) => "#e2e8f0"};
+  background: "#e2e8f0";
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
