@@ -40,7 +40,7 @@ export const Title = styled(motion.h2)`
   font-weight: 700;
   color: #1f2937;
   text-align: left;
-  margin-left: 2rem;
+  margin-left: 1rem;
   margin-bottom: 3rem;
   background: linear-gradient(90deg, #7acfbb, #abfcf8);
   -webkit-background-clip: text;
@@ -111,14 +111,14 @@ export const Description = styled(motion.p)`
   text-align: left;
   color: ${colors.textColor};
   max-width: 42rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
   margin-bottom: 2rem;
   ${({ theme }) => theme.darkMode && `color: #d1d5db;`}
 `;
 
 export const ButtonWrapper = styled(motion.div)`
   text-align: left;
-  margin: 1rem 2rem;
+  margin: 1rem 1rem;
 
 `;
 

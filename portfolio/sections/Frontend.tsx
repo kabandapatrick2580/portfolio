@@ -87,8 +87,16 @@ const Frontend = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Front-End Skills
+          Front-End & Mobile Development Background
         </Title>
+        <Description variants={itemVariants}>
+          After working as Backend engineer on various projects, our team was in need of a Frontend engineer to build the user interface. I took on the challenge and quickly learned React, React Native, and other front-end technologies. I have since built several projects that showcase my skills in creating responsive, user-friendly interfaces.
+        </Description>
+        <ButtonWrapper variants={itemVariants}>
+          <Button href="/projects" aria-label="View my front-end projects">
+            See My Projects
+          </Button>
+        </ButtonWrapper>
         <Grid variants={containerVariants} initial="hidden" animate="visible">
           {frontendSkills[0].items.map((skill, index) => (
             <Card key={index} variants={itemVariants}>
@@ -100,16 +108,6 @@ const Frontend = () => {
             </Card>
           ))}
         </Grid>
-        <Description variants={itemVariants}>
-          With a passion for creating intuitive and engaging user interfaces, I leverage React and
-          React Native to build responsive web and mobile applications. My projects demonstrate my
-          growing expertise, and I’m committed to continuously advancing my front-end skills.
-        </Description>
-        <ButtonWrapper variants={itemVariants}>
-          <Button href="/projects" aria-label="View my front-end projects">
-            See My Projects
-          </Button>
-        </ButtonWrapper>
       </Container>
     </Section>
   );

@@ -33,7 +33,7 @@ const backendSkills = [
       },
       {
         name: "Flask",
-        icon: <SiFlask style={{ color: "#1f2937" }} />,
+        icon: <SiFlask style={{ color: "#ffff" }} />,
         description: "Crafting lightweight APIs and microservices with Flask.",
       },
       {
@@ -88,11 +88,11 @@ const BackendSkillsSection = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Back-End
+          Back-End Background
         </Title>
         
         <Description variants={itemVariants}>
-          After working for 2 years as an IT Support Specialist, I transitioned to back-end development, where I now focus on building robust server-side applications. My expertise includes Python, Django, Flask, and various databases like PostgreSQL and MongoDB. I enjoy creating efficient APIs and scalable architectures that power modern web applications.
+          After working for 2 years as an IT Support Specialist, I still had a passion for coding and wanted to build applications. I started learning Python and quickly moved on to back-end development, mastering frameworks like Django and Flask. I have since built several projects that showcase my skills in creating robust, scalable back-end systems.
         </Description>
                 <ButtonWrapper variants={itemVariants}>
           <Button href="/projects" aria-label="View my back-end projects">
