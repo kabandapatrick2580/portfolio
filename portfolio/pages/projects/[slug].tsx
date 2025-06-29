@@ -288,19 +288,6 @@ const ErrorTitle = styled.h1`
   margin-bottom: 1rem;
 `;
 
-// Theme interface
-interface Theme {
-  background?: string;
-  text?: string;
-  textSecondary?: string;
-  placeholder?: string;
-  placeholderText?: string;
-  tagTech?: string;
-  tagTechText?: string;
-  tagCategory?: string;
-  tagCategoryText?: string;
-  link?: string;
-}
 
 
 
