@@ -105,10 +105,11 @@ export const FormContainer = styled(motion.div)`
   font-size: ${typography.fontSizeBody};
   font-weight: 400;
   position: relative;
+  padding: 1rem;
+
   @media (max-width: 768px) {
     max-width: 100%;
     width: 100%;
-    padding: 1rem;
 
 }`
 const ProjectDetails = styled.div`
