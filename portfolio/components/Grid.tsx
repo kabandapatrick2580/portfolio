@@ -228,7 +228,7 @@ const GridItem = styled(motion.div)`
   padding: 2rem;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid ${colors.textQuaternary};
-  color: #e0e7ff;
+  color: ${colors.textColor};
   border-radius: 12px;
   cursor: pointer;
   position: relative;
@@ -301,7 +301,7 @@ const GridItem = styled(motion.div)`
   span {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #e0e7ff;
+    color: ${colors.textQuaternary};
     margin-top: 1rem;
     position: relative;
     z-index: 3;
@@ -309,7 +309,7 @@ const GridItem = styled(motion.div)`
 
   svg {
     font-size: 2.5rem;
-    color: #a5b4fc;
+    color: ${colors.textQuaternary};
     position: relative;
     z-index: 3;
   }
