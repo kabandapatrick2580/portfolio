@@ -361,21 +361,29 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
   const handlePrev = () => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? (project.images?.length || 1) - 1 : prev - 1
+      project && project.images
+        ? prev === 0
+          ? (project.images.length || 1) - 1
+          : prev - 1
+        : prev
     );
     resetAutoSlide();
   };
 
   const handleNext = () => {
     setCurrentImageIndex((prev) =>
-      prev === (project.images?.length || 1) - 1 ? 0 : prev + 1
+      project && project.images
+        ? prev === (project.images.length || 1) - 1
+          ? 0
+          : prev + 1
+        : prev
     );
     resetAutoSlide();
   };
 
   if (router.isFallback) {
     return (
-      <LoadingContainer theme={theme}>
+      <LoadingContainer>
         <Text style={{ fontSize: "1.25rem", fontWeight: 600 }}>Loading...</Text>
       </LoadingContainer>
     );
@@ -383,9 +391,9 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
   if (!project) {
     return (
-      <ErrorContainer theme={theme}>
-        <ErrorTitle theme={theme}>Project Not Found</ErrorTitle>
-        <BackLink href="/projects" aria-label="Return to projects page" theme={theme}>
+      <ErrorContainer>
+        <ErrorTitle>Project Not Found</ErrorTitle>
+        <BackLink href="/projects" aria-label="Return to projects page">
           Back to Projects
         </BackLink>
       </ErrorContainer>
@@ -418,10 +426,9 @@ export default function ProjectPage({ project }: ProjectPageProps) {
         initial="hidden"
         animate={isMounted ? "visible" : "hidden"}
         variants={containerVariants}
-        theme={theme}
       >
         <ContentWrapper>
-          <ProjectTitle variants={itemVariants} theme={theme}>
+          <ProjectTitle variants={itemVariants}>
             {project.title}
           </ProjectTitle>
 
@@ -492,7 +499,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                 />
               </MediaWrapper>
             ) : (
-              <PlaceholderMedia theme={theme}>
+              <PlaceholderMedia>
                 <Text>No media available</Text>
               </PlaceholderMedia>
             )}
@@ -503,14 +510,14 @@ export default function ProjectPage({ project }: ProjectPageProps) {
             {/* Main Content */}
             <MainContent>
               <Section>
-                <SectionTitle theme={theme}>Overview</SectionTitle>
-                <Text theme={theme}>{project.longDescription || project.description}</Text>
+                <SectionTitle>Overview</SectionTitle>
+                <Text >{project.longDescription || project.description}</Text>
               </Section>
 
               {project.features && (
                 <Section>
-                  <SectionTitle theme={theme}>Key Features</SectionTitle>
-                  <List theme={theme}>
+                  <SectionTitle>Key Features</SectionTitle>
+                  <List>
                     {project.features.map((feature, index) => (
                       <li key={index}>{feature}</li>
                     ))}
@@ -520,14 +527,14 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
               {project.challenges && (
                 <Section>
-                  <SectionTitle theme={theme}>Challenges & Solutions</SectionTitle>
+                  <SectionTitle>Challenges & Solutions</SectionTitle>
                   <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                     {project.challenges.map((challenge, index) => (
                       <ChallengeItem key={index}>
-                        <Text theme={theme}>
+                        <Text>
                           <strong>Challenge:</strong> {challenge.problem}
                         </Text>
-                        <Text theme={theme}>
+                        <Text>
                           <strong>Solution:</strong> {challenge.solution}
                         </Text>
                       </ChallengeItem>
@@ -538,8 +545,8 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
               {project.results && (
                 <Section>
-                  <SectionTitle theme={theme}>Results</SectionTitle>
-                  <List theme={theme}>
+                  <SectionTitle>Results</SectionTitle>
+                  <List>
                     {project.results.map((result, index) => (
                       <li key={index}>{result}</li>
                     ))}
@@ -552,10 +559,10 @@ export default function ProjectPage({ project }: ProjectPageProps) {
             <Sidebar>
               {project.technologies && (
                 <SidebarSection>
-                  <SidebarTitle theme={theme}>Technologies</SidebarTitle>
+                  <SidebarTitle>Technologies</SidebarTitle>
                   <TagContainer>
                     {project.technologies.map((tech, index) => (
-                      <Tag key={index} isTech theme={theme}>
+                      <Tag key={index} isTech>
                         {tech}
                       </Tag>
                     ))}
@@ -565,10 +572,10 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
               {project.categories && (
                 <SidebarSection>
-                  <SidebarTitle theme={theme}>Categories</SidebarTitle>
+                  <SidebarTitle>Categories</SidebarTitle>
                   <TagContainer>
                     {project.categories.map((category, index) => (
-                      <Tag key={index} theme={theme}>
+                      <Tag key={index}>
                         {category}
                       </Tag>
                     ))}
@@ -578,20 +585,20 @@ export default function ProjectPage({ project }: ProjectPageProps) {
 
               {project.role && (
                 <SidebarSection>
-                  <SidebarTitle theme={theme}>My Role</SidebarTitle>
-                  <Text theme={theme}>{project.role}</Text>
+                  <SidebarTitle>My Role</SidebarTitle>
+                  <Text>{project.role}</Text>
                 </SidebarSection>
               )}
 
               {project.date && (
                 <SidebarSection>
-                  <SidebarTitle theme={theme}>Date</SidebarTitle>
-                  <Text theme={theme}>{project.date}</Text>
+                  <SidebarTitle>Date</SidebarTitle>
+                  <Text>{project.date}</Text>
                 </SidebarSection>
               )}
 
               <SidebarSection>
-                <SidebarTitle theme={theme}>Links</SidebarTitle>
+                <SidebarTitle>Links</SidebarTitle>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   <LiveDemoButton
                     href={project.url}
@@ -619,8 +626,6 @@ export default function ProjectPage({ project }: ProjectPageProps) {
           <BackLink
             href="/projects"
             aria-label="Return to projects page"
-            theme={theme}
-            variants={itemVariants}
           >
             Back to Projects
           </BackLink>
