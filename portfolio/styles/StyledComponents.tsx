@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { DefaultTheme } from "styled-components";
 import { colors } from "./constants";
 
 // Extend DefaultTheme to include darkMode

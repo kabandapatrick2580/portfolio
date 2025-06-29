@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useRef } from "react";
+import { colors } from "@/styles/constants"
 
 // Project Interface
 interface Project {
@@ -55,8 +56,6 @@ const ProjectTitle = styled(motion.h1)`
   font-weight: 700;
   color: "#1a202c";
   text-align:   left;
-  margin-bottom: 2rem;
-  position: absolute;
   top: 1px;
   @media (min-width: 768px) {
     font-size: 3rem;
@@ -220,11 +219,12 @@ const TagContainer = styled.div`
 
 const Tag = styled.span<{ isTech?: boolean }>`
   background: ${({ isTech}) =>
-    isTech ?  "#bfdbfe" :  "#e5e7eb"};
+    isTech ?  "" :  "#e5e7eb"};
   color: ${({ isTech }) =>
-    isTech ?  "#1e40af" : "#1f2937"};
+    isTech ?  "#7acfbb" : "#1f2937"};
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
+  border: 1px solid ${colors.textTertiary};
   font-size: 0.875rem;
 `;
 
@@ -239,9 +239,11 @@ const LinkButton = styled.a`
 `;
 
 const LiveDemoButton = styled(LinkButton)`
-  background: #2563eb;
+  background: ${colors.textTertiary};
+  color: black;
   &:hover {
-    background: #1d4ed8;
+    background: ${colors.textQuaternary};
+    cursor: pointer;
   }
 `;
 

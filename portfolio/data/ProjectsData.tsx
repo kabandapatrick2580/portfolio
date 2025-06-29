@@ -22,7 +22,7 @@ export const projects: Project[] = [
     categories: ["Frontend"],
     longDescription: "This portfolio website serves as a showcase of my skills and projects, built with React, TypeScript, and Tailwind CSS. It features a modern, responsive design that highlights my work and allows potential clients or employers to view my capabilities.",
     image: "/images/Profile.jpg", // Example image URL
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
     id: 1,
