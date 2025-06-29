@@ -38,6 +38,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
+        <link rel="icon" href="/Profile.jpg" />
         <body className="antialiased">
           <Main />
           <NextScript />

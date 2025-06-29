@@ -18,11 +18,10 @@ export const projects: Project[] = [
     id: 0,
     title: "PORTFOLIO WEBSITE",
     description: "Developed a personal portfolio website to showcase my skills and projects, utilizing React, TypeScript, and Tailwind CSS for a modern, responsive design.",
-    url: "https://patrickkabanda.com",
     categories: ["Frontend"],
     longDescription: "This portfolio website serves as a showcase of my skills and projects, built with React, TypeScript, and Tailwind CSS. It features a modern, responsive design that highlights my work and allows potential clients or employers to view my capabilities.",
     image: "/images/Profile.jpg", // Example image URL
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    technologies: ["React", "TypeScript", "Styled components", "Framer Motion", "Next.js"],
   },
   {
     id: 1,
@@ -72,17 +71,17 @@ export const projects: Project[] = [
     ],
     categories: ["Frontend"],
     technologies: ["React", "SCSS"],
-    image: "/images/Profile.jpg",
+    image: "/images/App.png",
 
   },
   {
     id: 4,
     title: "GOALIFAI (EXPENSE TRACKING APP)",
     description: "Currently developing Goalifai, an expense tracking app featuring AI-powered financial advice agents to help users manage budgets and achieve financial goals.",
-    categories: ["Backend", "Frontend"],
+    categories: ["Backend"],
     longDescription: "Goalifai is an expense tracking app currently in development, designed to help users manage their finances effectively. The app features AI-powered financial advice agents that provide personalized recommendations based on user spending patterns and financial goals. It aims to simplify budgeting and enhance financial literacy.",
-    image: "/images/Profile.jpg",
-    
+    image: "/images/App.png",
+    technologies: ["Flask", "REST API"]
   },
 ];
 

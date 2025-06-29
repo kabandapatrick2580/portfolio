@@ -108,8 +108,7 @@ export const FormContainer = styled(motion.div)`
   @media (max-width: 768px) {
     max-width: 100%;
     width: 100%;
-    min-width: 300px;
-
+    padding: 1rem;
 
 }`
 const ProjectDetails = styled.div`

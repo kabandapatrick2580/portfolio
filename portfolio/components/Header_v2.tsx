@@ -143,11 +143,7 @@ const Header: React.FC = () => {
               Home
             </Link>
           </li>
-          <li>
-            <Link href="/#about" onClick={toggleSidebar}>
-              About
-            </Link>
-          </li>
+
           <li>
             <Link href="/projects" onClick={toggleSidebar} target='_blank'>
               Projects
@@ -156,6 +152,11 @@ const Header: React.FC = () => {
           <li>
             <Link href="/contact" onClick={toggleSidebar}>
               Contact
+            </Link>
+          </li>
+            <li>
+            <Link href="https://docs.google.com/document/d/1Mtw1_8HMfbsa7Nqy3urUmm4tY30gcgiZ/edit?usp=sharing&ouid=118002845422319643916&rtpof=true&sd=true" onClick={toggleSidebar} target='_blank' rel="noopener noreferrer">
+              Resume
             </Link>
           </li>
         </NavLinks>
