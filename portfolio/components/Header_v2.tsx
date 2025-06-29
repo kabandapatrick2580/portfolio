@@ -72,7 +72,7 @@ const Sidebar = styled.div<SidebarProps>`
   right: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
   width: 250px;
   height: 100vh;
-  background-color: ${colors.glassBg};
+  background-color: ${colors.cardBg};
   transition: right 0.5s ease-in-out;
   z-index: 1000;
   padding: 20px;
@@ -111,7 +111,7 @@ const NavLinks = styled.ul`
       font-size: 18px;
 
       &:hover {
-        color: #00ff88;
+        color: ${colors.textTertiary};
       }
     }
   }

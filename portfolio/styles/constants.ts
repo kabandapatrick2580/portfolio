@@ -13,7 +13,7 @@ export const colors = {
   textPrimary: '#e0e7ff',
   textSecondary: '#c4b5fd',
   accent: '#ffd64f',
-  cardBg: 'rgba(17, 24, 39, 0.8)',
+  cardBg: 'black',
   glassBg: 'rgba(255, 255, 255, 0.05)',
   border: 'rgba(255, 255, 255, 0.1)',
   textTertiary: '#7acfbb',

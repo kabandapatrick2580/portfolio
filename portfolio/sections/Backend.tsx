@@ -90,12 +90,15 @@ const BackendSkillsSection = () => {
         >
           Back-End
         </Title>
+        
         <Description variants={itemVariants}>
-          I specialize in building robust, scalable back-end systems using Python and Node.js
-          frameworks, paired with relational and NoSQL databases. My projects showcase my ability to
-          create efficient APIs and manage complex data, and I’m dedicated to deepening my back-end
-          expertise.
+          After working for 2 years as an IT Support Specialist, I transitioned to back-end development, where I now focus on building robust server-side applications. My expertise includes Python, Django, Flask, and various databases like PostgreSQL and MongoDB. I enjoy creating efficient APIs and scalable architectures that power modern web applications.
         </Description>
+                <ButtonWrapper variants={itemVariants}>
+          <Button href="/projects" aria-label="View my back-end projects">
+            See My Projects
+          </Button>
+        </ButtonWrapper>
       <Container>
         <Grid variants={containerVariants} initial="hidden" animate="visible">
           {backendSkills[0].items.map((skill, index) => (
@@ -109,11 +112,7 @@ const BackendSkillsSection = () => {
           ))}
         </Grid>
 
-        <ButtonWrapper variants={itemVariants}>
-          <Button href="/projects" aria-label="View my back-end projects">
-            See My Projects
-          </Button>
-        </ButtonWrapper>
+
       </Container>
     </Section>
   );

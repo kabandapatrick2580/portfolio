@@ -2,7 +2,7 @@
 import { projects } from "@/data/ProjectsData";
 import Link from "next/link";
 import Head from "next/head";
-import { ProjectBox, ProjectIcon, ProjectDetails, Subtitle, ProjectTittle, ProjectDescription, IconsRow, IconBox, IconBoxFill, IconLabel, ProjectsSection, Container } from '@/styles/Card.styled';
+import { ProjectBox, ProjectIcon, ProjectDetails, Subtitle, ProjectTittle, ProjectDescription, IconsRow, IconBox, IconBoxFill, IconLabel,IconLabel_2, ProjectsSection, Container } from '@/styles/Card.styled';
 import { PiStudentBold } from "react-icons/pi";
 import { MdReadMore } from "react-icons/md";
 import { LiaGlobeSolid } from "react-icons/lia";
@@ -21,7 +21,9 @@ export default function Projects() {
               key={project.id} // Use project.id instead of index
             >
               <ProjectIcon>
-                <PiStudentBold />
+                <span>
+                  {project.id}
+                </span>
               </ProjectIcon>
               <ProjectDetails>
                   <Subtitle>
@@ -42,7 +44,7 @@ export default function Projects() {
                         <Link href={`/projects/${project.id}`} passHref rel="noopener noreferrer">
                         <IconBoxFill>
                               <MdReadMore />
-                            <IconLabel>Details</IconLabel>
+                            <IconLabel_2>Details</IconLabel_2>
                           
                         </IconBoxFill>
                         </Link>

@@ -80,6 +80,14 @@ const SEOSkillsSection = () => {
         >
           SEO Skills
         </Title>
+                <Description variants={itemVariants}>
+          With over two years of SEO expertise, I optimize websites to boost organic traffic and search rankings. My skills in keyword research, technical SEO, and analytics complement my full stack development, ensuring performant and discoverable web applications.
+        </Description>
+        <ButtonWrapper variants={itemVariants}>
+          <Button href="/projects" aria-label="View my SEO projects">
+            See My Projects
+          </Button>
+        </ButtonWrapper>
         <Grid variants={containerVariants} initial="hidden" animate="visible">
           {seoSkills[0].items.map((skill, index) => (
             <Card key={index} variants={itemVariants}>
@@ -91,14 +99,7 @@ const SEOSkillsSection = () => {
             </Card>
           ))}
         </Grid>
-        <Description variants={itemVariants}>
-          With over two years of SEO expertise, I optimize websites to boost organic traffic and search rankings. My skills in keyword research, technical SEO, and analytics complement my full stack development, ensuring performant and discoverable web applications.
-        </Description>
-        <ButtonWrapper variants={itemVariants}>
-          <Button href="/projects" aria-label="View my SEO projects">
-            See My Projects
-          </Button>
-        </ButtonWrapper>
+
       </Container>
     </Section>
   );

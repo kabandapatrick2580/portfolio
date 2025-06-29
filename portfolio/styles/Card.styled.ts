@@ -24,7 +24,8 @@ const IconBox = styled(motion.div)`
   align-items: center;
   gap: 0.5rem;
   padding: 2px 5px;
-  outline: 1px solid #e2e8f0;
+  outline: 1px solid ${colors.textTertiary};
+  color: ${colors.textTertiary};
   border-radius: 0.5rem;
     &:hover {
     background-color: #cbd5e1; // gray-300
@@ -37,20 +38,27 @@ export const ContactIcon = styled.div`
   gap: 1rem;
   `;
 const IconBoxFill = styled(IconBox)`
-  background-color: #e2e8f0; // gray-200
-  color: #1a2745; // navy-800
+  background-color: ${colors.textTertiary};
   outline: none;
   cursor: pointer;
+  color: black;
   &:hover {
-    background-color: #cbd5e1; // gray-300
+    background-color: ${colors.textQuaternary};
+    color: black;
   }
   transition: background-color 0.3s ease;
   `;
 
 const IconLabel = styled.span`
   font-size: 0.5rem;
-  color: #374151;
+  color: ${colors.textTertiary};
 `;
+
+const IconLabel_2 = styled.span`
+  font-size: 0.5rem;
+  color: black;
+`
+
 const ProjectsSection = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -113,18 +121,18 @@ const ProjectDetails = styled.div`
 const Subtitle = styled.p`
   font-size: 8px;
   font-weight: 400;
-  color: #333;
+  color: ${colors.textTertiary};
   `;
 
 const ProjectTittle = styled.h4`
   font-size: 12px;
   font-weight: bold;
-  color: #1a2745; // navy-800
+  color: ${colors.textTertiary}
 `;
 const ProjectDescription = styled.p`
   font-size: 8px;
   font-weight: 400;
-  color: #4b5563;
+  color: ${colors.textColor};
   @media (max-width: 768px) {
     max-width: 100%;
     white-space: normal;
@@ -133,12 +141,15 @@ const ProjectDescription = styled.p`
 
 const ProjectIcon = styled.div`
   height: 100%;
-  background-color: #e2e8f0; // gray-200
+  background-color: ${colors.textTertiary}; // gray-200
   border-radius: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 5rem;
+  color: black;
 `;
+
 
 const iconColor = styled.span`
   color: #1a2745; // navy-800
@@ -212,6 +223,7 @@ export {
   ProjectDescription,
   ProjectIcon,
   iconColor,
+  IconLabel_2
 };
 
 export const TwoColumns = styled(motion.div)`

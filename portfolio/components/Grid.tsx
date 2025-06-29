@@ -142,7 +142,7 @@ const Sidebar = styled(motion.nav)<SidebarProps>`
   left: 0;
   width: 200px;
   height: 100%;
-  background: rgba(17, 24, 39, 0.95);
+  background: ${colors.cardBg};
   padding: 2rem;
   display: flex;
   flex-direction: column;

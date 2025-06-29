@@ -87,6 +87,14 @@ const DevOpsSkillsSection = () => {
         >
           DevOps Skills
         </Title>
+        <Description variants={itemVariants}>
+          Of all the projects that I have worked on, I also participated in designing, deploying, and maintaining robust DevOps pipelines and cloud infrastructure. My experience spans containerization, automation, and secure deployments, ensuring reliable and scalable solutions for modern web applications.
+        </Description>
+        <ButtonWrapper variants={itemVariants}>
+          <Button href="/projects" aria-label="View my DevOps projects">
+            See My Projects
+          </Button>
+        </ButtonWrapper>
         <Grid variants={containerVariants} initial="hidden" animate="visible">
           {devOpsSkills[0].items.map((skill, index) => (
             <Card key={index} variants={itemVariants}>
@@ -98,17 +106,7 @@ const DevOpsSkillsSection = () => {
             </Card>
           ))}
         </Grid>
-        <Description variants={itemVariants}>
-          I excel at streamlining deployment processes and ensuring secure, scalable infrastructure
-          using modern DevOps tools. My experience with Docker, Digital Ocean, and Nginx enables me
-          to deploy robust applications, and I’m committed to advancing my skills in cloud and server
-          management.
-        </Description>
-        <ButtonWrapper variants={itemVariants}>
-          <Button href="/projects" aria-label="View my DevOps projects">
-            See My Projects
-          </Button>
-        </ButtonWrapper>
+
       </Container>
     </Section>
   );
