@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { DefaultTheme } from "styled-components";
+import { colors } from "./constants";
 
 // Extend DefaultTheme to include darkMode
 declare module "styled-components" {
@@ -11,7 +12,6 @@ declare module "styled-components" {
 
 // Reusable styled components
 export const Section = styled.section`
-  padding-top: 4rem;
   padding-bottom: 4rem;
 `;
 
@@ -38,12 +38,14 @@ export const Container = styled.div`
 
 export const Title = styled(motion.h2)`
   font-size: 1.875rem;
-  line-height: 2.25rem;
   font-weight: 700;
   color: #1f2937;
-  text-align: center;
+  text-align: left;
+  margin-left: 2rem;
   margin-bottom: 3rem;
-
+  background: linear-gradient(90deg, #7acfbb, #abfcf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   @media (min-width: 768px) {
     font-size: 2.25rem;
     line-height: 2.5rem;
@@ -65,7 +67,7 @@ export const Grid = styled(motion.div)`
 `;
 
 export const Card = styled(motion.div)`
-  background: #fff;
+  background: ${colors.glassBg};
   padding: 1.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -89,13 +91,13 @@ export const CardHeader = styled.div`
 export const CardTitle = styled.h3`
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1f2937;
+    color: ${colors.textTertiary}!important;
 
   ${({ theme }) => theme.darkMode && `color: #fff;`}
 `;
 
 export const CardDesc = styled.p`
-  color: #4b5563;
+  color: #90a1a3;
   font-size: 0.875rem;
 
   ${({ theme }) => theme.darkMode && `color: #d1d5db;`}
@@ -107,29 +109,31 @@ export const StyledIcon = styled.span`
 `;
 
 export const Description = styled(motion.p)`
-  text-align: center;
-  color: #4b5563;
-  margin-top: 2rem;
+  text-align: left;
+  color: ${colors.textColor};
   max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
   ${({ theme }) => theme.darkMode && `color: #d1d5db;`}
 `;
 
 export const ButtonWrapper = styled(motion.div)`
-  text-align: center;
-  margin-top: 1rem;
+  text-align: left;
+  margin: 1rem 2rem;
+
 `;
 
 export const Button = styled.a`
   display: inline-block;
-  background: #2563eb;
-  color: #fff;
+  background: linear-gradient(90deg, #7acfbb, #abfcf8);
+  color: #000000;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
   transition: background 0.3s;
-
   &:hover {
-    background: #1d4ed8;
+    background: linear-gradient(90deg, #6ab8a0, #9df1e2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #000000;
+    font-weight: 600;
   }
 `;

@@ -83,14 +83,20 @@ const BackendSkillsSection = () => {
 
   return (
     <Section>
-      <Container>
         <Title
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          Back-End Skills
+          Back-End
         </Title>
+        <Description variants={itemVariants}>
+          I specialize in building robust, scalable back-end systems using Python and Node.js
+          frameworks, paired with relational and NoSQL databases. My projects showcase my ability to
+          create efficient APIs and manage complex data, and I’m dedicated to deepening my back-end
+          expertise.
+        </Description>
+      <Container>
         <Grid variants={containerVariants} initial="hidden" animate="visible">
           {backendSkills[0].items.map((skill, index) => (
           <Card key={index} variants={itemVariants}>
@@ -102,12 +108,7 @@ const BackendSkillsSection = () => {
             </Card>
           ))}
         </Grid>
-        <Description variants={itemVariants}>
-          I specialize in building robust, scalable back-end systems using Python and Node.js
-          frameworks, paired with relational and NoSQL databases. My projects showcase my ability to
-          create efficient APIs and manage complex data, and I’m dedicated to deepening my back-end
-          expertise.
-        </Description>
+
         <ButtonWrapper variants={itemVariants}>
           <Button href="/projects" aria-label="View my back-end projects">
             See My Projects

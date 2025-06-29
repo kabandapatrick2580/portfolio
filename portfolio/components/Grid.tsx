@@ -53,7 +53,7 @@ const HeroSection = styled(motion.div)`
 const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 3rem;
+  padding:  3rem;
   background: ${colors.glassBg};
   backdrop-filter: blur(8px);
   z-index: 1;
@@ -163,8 +163,9 @@ const SidebarItem = styled(motion.div)`
   font-weight: 500;
   transition: background 0.3s ease;
   &:hover {
-    background: linear-gradient(90deg, #035354, #5a9491);
-    color: #ffffff;
+    background: linear-gradient(90deg, #7acfbb, #abfcf8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: black;
   }
   svg {
     font-size: 1.5rem;
@@ -185,8 +186,9 @@ const BackButton = styled(motion.button)`
   border-radius: 8px;
 
   &:hover {
-    background: linear-gradient(90deg, #035354, #5a9491);
-    color: #ffffff;
+    background: linear-gradient(90deg, #7acfbb, #abfcf8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: black;
   }
 
   svg {
@@ -200,6 +202,7 @@ const SidebarIcon = styled.div<SidebarProps>`
   left: ${({ $isSidebarOpen }) => ($isSidebarOpen ? '200px' : '1rem')};
   z-index: 1100;
   transition: left 0.3s ease;
+  color: #e0e7ff;
 `;
 
 const ContentArea = styled(motion.div)<SidebarProps>`
@@ -214,8 +217,8 @@ const ContentArea = styled(motion.div)<SidebarProps>`
 const GridContainer = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
+  gap: 1rem;
+  padding: 0 2rem;
 `;
 
 const GridItem = styled(motion.div)`
@@ -395,7 +398,7 @@ const Grid = () => {
           whileTap={{ scale: 0.95 }}
           style={{ background: 'none', border: 'none', cursor: 'pointer' }}
         >
-          <FiSidebar size={32} color="black" />
+          <FiSidebar size={32} />
         </motion.button>
       </SidebarIcon>
       ) : (
@@ -407,7 +410,7 @@ const Grid = () => {
             whileTap={{ scale: 0.95 }}
             style={{ display: 'none' }}
           >
-            <FiSidebar size={32} color="black" />
+            <FiSidebar size={32} />
           </motion.button>
         </SidebarIcon>
       )}

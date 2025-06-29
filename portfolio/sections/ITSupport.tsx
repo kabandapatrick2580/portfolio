@@ -76,6 +76,9 @@ const ITSupport = () => {
           Before I became a developer, I worked as an IT support specialist, where I honed my skills in troubleshooting and resolving technical issues. This experience has given me a strong foundation in understanding user needs and providing effective solutions.
           My background in IT support allows me to approach development with a user-centric mindset, ensuring that the applications I build are not only functional but also user-friendly and reliable.
         </Description>
+        <ButtonWrapper>
+          <Button>Contact Me</Button>
+        </ButtonWrapper>
         <Grid
           variants={containerVariants}
           initial="hidden"
@@ -92,9 +95,7 @@ const ITSupport = () => {
           ))}
         </Grid>
 
-        <ButtonWrapper>
-          <Button>Contact Me</Button>
-        </ButtonWrapper>
+
       </Container>
     </Section>
   );

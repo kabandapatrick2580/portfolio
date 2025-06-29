@@ -18,6 +18,7 @@ export const colors = {
   border: 'rgba(255, 255, 255, 0.1)',
   textTertiary: '#7acfbb,',
   textQuaternary: '#abfcf8',
+  textColor: '#90a1a3'
 };
 
 export const typography = {
